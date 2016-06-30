@@ -6,10 +6,12 @@
 .layout-image-display #image-display.hidden {
   display: none;
 }
-.layout-image-display .image-display-nojs-image {
+.layout-image-display-nojs-image {
   width: 100%;
 }
-.layout-image-display .image-display-gallery-image {
-  width: 200px;
-  height: 200px;
+.layout-image-display-gallery {
+  width: 100%;
+}
+.layout-image-display-gallery-image {
+  width: 25%;
 }
