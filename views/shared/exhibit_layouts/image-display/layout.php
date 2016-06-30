@@ -12,15 +12,23 @@ require_once(dirname(__FILE__) . '/ImageDisplayLayoutHelper.class.php');
 
 $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 ?>
+
 <div class="image-display-gallery">
-    <?php echo $layoutHelper->getGallery($attachments) ?>
+    <?php
+    echo $layoutHelper->getImages($attachments,
+                                  array("div" =>"layout-image-display-gallery-image"),
+                                  "square_thumbnail")
+    ?>
 </div>
 
 <div id="image-display" class="image-display-js hidden">
-    <?php echo $layoutHelper->getGallery($attachments) ?>
+    <?php echo $layoutHelper->getImages($attachments) ?>
 </div>
 
 <noscript>
     <style>.image-display-js { display: none; }</style>
-    <?php echo $layoutHelper->getNoscript($attachments) ?>
+    <?php
+    echo $layoutHelper->getNoscript($attachments,
+                                    array("div" => "layout-image-display-nojs-image"))
+    ?>
 </noscript>
