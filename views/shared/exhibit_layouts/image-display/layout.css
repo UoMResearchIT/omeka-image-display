@@ -6,9 +6,10 @@
 .layout-image-display #image-display.hidden {
   display: none;
 }
-.layout-image-display .image-display-image {
+.layout-image-display .image-display-nojs-image {
   width: 100%;
 }
-.layout-image-display img {
-  width: 100%;
+.layout-image-display .image-display-gallery-image {
+  width: 200px;
+  height: 200px;
 }

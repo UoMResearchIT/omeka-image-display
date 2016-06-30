@@ -10,14 +10,17 @@ require_once(dirname(__FILE__) . '/ImageDisplayLayoutHelper.class.php');
  * @package Omeka\Plugins\ImageDisplayPlugin
  */
 
-$layoutHelper = new ImageDisplayLayoutHelper;
+$layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 ?>
+<div class="image-display-gallery">
+    <?php echo $layoutHelper->getGallery($attachments) ?>
+</div>
 
 <div id="image-display" class="image-display-js hidden">
-    <?php $layoutHelper->getNoscript($attachments) ?>
+    <?php echo $layoutHelper->getGallery($attachments) ?>
 </div>
 
 <noscript>
     <style>.image-display-js { display: none; }</style>
-    <?php $layoutHelper->getNoscript($attachments) ?>
+    <?php echo $layoutHelper->getNoscript($attachments) ?>
 </noscript>
