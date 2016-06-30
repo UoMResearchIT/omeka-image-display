@@ -1,13 +1,11 @@
 <?php
 /**
- * ImageDisplay
+ * ImageDisplayPlugin.php
  *
- */
-
-/**
- * The ImageDisplay plugin.
+ * An Omeka plugin to improve the standard exhibit image display.
  *
- * @package Omeka/Plugins/ImageDisplay
+ * @author Tristan Daniel Maat <tm@tlater.net>
+ * @package Omeka\Plugins\ImageDisplayPlugin
  */
 class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
 {
@@ -40,5 +38,4 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
         add_translation_source(dirname(__FILE__) . '/languages');
     }
 }
-
 ?>

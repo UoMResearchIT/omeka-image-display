@@ -1,0 +1,14 @@
+.layout-image-display #image-display {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+.layout-image-display #image-display.hidden {
+  display: none;
+}
+.layout-image-display .image-display-image {
+  width: 100%;
+}
+.layout-image-display img {
+  width: 100%;
+}
