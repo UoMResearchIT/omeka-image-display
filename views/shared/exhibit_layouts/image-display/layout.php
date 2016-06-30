@@ -16,19 +16,20 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 <div class="image-display-gallery">
     <?php
     echo $layoutHelper->getImages($attachments,
-                                  array("div" =>"layout-image-display-gallery-image"),
+                                  array("class" => "layout-image-display-gallery-image"),
                                   "square_thumbnail")
     ?>
 </div>
 
 <div id="image-display" class="image-display-js hidden">
-    <?php echo $layoutHelper->getImages($attachments) ?>
+    <?php echo $layoutHelper->getImages($attachments,
+                                        array("class" => "layout-image-display-image")) ?>
 </div>
 
 <noscript>
     <style>.image-display-js { display: none; }</style>
     <?php
     echo $layoutHelper->getNoscript($attachments,
-                                    array("div" => "layout-image-display-nojs-image"))
+                                    array("class" => "layout-image-display-nojs-image"))
     ?>
 </noscript>
