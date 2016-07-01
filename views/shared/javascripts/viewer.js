@@ -78,17 +78,34 @@ ImageDisplay.Viewer = function ()
     var div = null;
 
     /**
-     * Initialize the object. Calls the init function of
-     * ImageDisplay.Image.
+     * The keyboard controls function.
+     * @function
+     *
+     * @param {Object} event - The key event as fired by an eventListener.
+     */
+    function keyboardControls (event)
+    {
+        var code = event.keyCode || event.which;
+
+        switch (code) {
+        case 27:
+            this.hide();
+            break;
+
+        default:
+            console.log("Keypress received: " + code);
+        }
+    }
+
+    /**
+     * Initialize the images array.
      * @function
      */
-    this.init = function ()
+    function initializeImages ()
     {
-        // Find and set the image display div.
-        div = document.getElementById("image-display");
-
         // Fill the images array. For each gallery image
-        [].forEach.call(document.getElementsByClassName("layout-image-display-gallery-image"),
+        [].forEach.call(
+            document.getElementsByClassName("layout-image-display-gallery-image"),
             function (galleryImage, i) {
                 // find the corresponding viewer image.
                 var viewerImage = document.
@@ -98,7 +115,24 @@ ImageDisplay.Viewer = function ()
                 // images array, and finally initialize the object.
                 images.push(new ImageDisplay.Image(galleryImage, viewerImage));
                 images[i].init();
-            }.bind(this));
+            }.bind(this)
+        );
+    }
+
+    /**
+     * Initialize the object. Calls the init function of
+     * ImageDisplay.Image.
+     * @function
+     */
+    this.init = function ()
+    {
+        // Find and set the image display div.
+        div = document.getElementById("image-display");
+
+        // Add keyboard listeners
+        div.addEventListener("keydown", keyboardControls.bind(this));
+
+        initializeImages();
     }
 
     /**
@@ -108,6 +142,7 @@ ImageDisplay.Viewer = function ()
     this.show = function ()
     {
         ImageDisplay.removeClass(div, "hidden");
+        div.focus();
     }
 
     /**
@@ -175,12 +210,19 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
      */
     this.init = function ()
     {
+        // Find the index among the image's siblings
+        var cur = galleryImage;
+        var index = -1;
+        while ((cur = cur.previousSibling) != null)
+            index++;
+
         // Make the galleryImage open the viewer when clicked.
         galleryImage.addEventListener("click", function (e) {
-            ImageDisplay.viewer.showImage(0);
+            ImageDisplay.viewer.showImage(index);
             ImageDisplay.viewer.show();
 
             console.log(e.target);
+            console.log(index);
         }, false);
     }
 

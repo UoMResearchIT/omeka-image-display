@@ -8,7 +8,8 @@
 }
 .layout-image-display #image-display .layout-image-display-image {
   display: none;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
