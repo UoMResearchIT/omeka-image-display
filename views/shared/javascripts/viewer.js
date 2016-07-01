@@ -199,6 +199,16 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
             ImageDisplay.viewer.show();
             ImageDisplay.viewer.showImage(index);
         }, false);
+
+        // Start loading the deferred viewer image. Once it is
+        // finished, mark this image as loaded.
+        var download = $("<img style=\"display:none\" />");
+        download.load(function () {
+            console.log("Download finished");
+            $(viewerImage).attr("src", $(this).attr("src"));
+        })
+        download.attr("src", $(viewerImage).attr("data-src"));
+        console.log(download);
     }
 
     /**

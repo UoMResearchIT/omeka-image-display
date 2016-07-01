@@ -63,7 +63,7 @@ class ImageDisplayLayoutHelper {
 
         foreach ($images->getElementsByTagName("img") as $image) {
             $image->setAttribute("data-src", $image->getAttribute("src"));
-            $image->setAttribute("src", "/");
+            $image->setAttribute("src", "http://tristan.mnemosyne.manchester.ac.uk/files/square_thumbnails/8877ce83bf01667e398bf3f991b7524a.jpg");
         }
 
         return $images->saveHTML();
