@@ -22,8 +22,11 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 </div>
 
 <div id="image-display" class="image-display-js hidden">
-    <?php echo $layoutHelper->getImages($attachments,
-                                        array("class" => "layout-image-display-image")) ?>
+    <?php
+    echo $layoutHelper->getImages($attachments,
+                                  array("class" => "layout-image-display-image"),
+                                  "original")
+    ?>
 </div>
 
 <noscript>
