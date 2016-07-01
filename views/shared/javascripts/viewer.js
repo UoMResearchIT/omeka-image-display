@@ -57,29 +57,33 @@ ImageDisplay.Viewer = function ()
     /**
      * Image objects that correspond to the images displayed on
      * the page as well as in the viewer.
+     * @private
      *
-     * @member {ImageDisplay.Image[]}
+     * @member {ImageDisplay.Image[]} images
      */
     var images = [];
 
     /**
      * The index of the image currently displayed by the viewer. Set
      * to null if no images are being displayed.
+     * @private
      *
-     * @member {?number}
+     * @member {?number} currentImage
      */
     var currentImage = null;
 
     /**
      * The image display div. Set after init is called.
+     * @private
      *
-     * @member {?HTMLElement}
+     * @member {?HTMLElement} div
      */
     var div = null;
 
     /**
      * The keyboard controls function.
      * @function
+     * @private
      *
      * @param {Object} event - The key event as fired by an eventListener.
      */
@@ -100,6 +104,7 @@ ImageDisplay.Viewer = function ()
     /**
      * Initialize the images array.
      * @function
+     * @private
      */
     function initializeImages ()
     {
@@ -191,17 +196,19 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
 {
     /**
      * The image in the layout's gallery.
+     * @private
      *
-     * @member {HTMLElement}
+     * @member {HTMLElement} galleryImage
+     * @memberOf ImageDisplay.Image
      */
-    var galleryImage = galleryImage;
 
     /**
      * The image in the viewer
+     * @private
      *
-     * @member {HTMLElement}
+     * @member {HTMLElement} viewerImage
+     * @memberOf ImageDisplay.Image
      */
-    var viewerImage = viewerImage;
 
     /**
      * Initialize the object. Adds a click event listener to the
@@ -217,12 +224,9 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
             index++;
 
         // Make the galleryImage open the viewer when clicked.
-        galleryImage.addEventListener("click", function (e) {
+        galleryImage.addEventListener("click", function () {
             ImageDisplay.viewer.showImage(index);
             ImageDisplay.viewer.show();
-
-            console.log(e.target);
-            console.log(index);
         }, false);
     }
 
