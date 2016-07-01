@@ -17,15 +17,16 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
     <?php
     echo $layoutHelper->getImages($attachments,
                                   array("class" => "layout-image-display-gallery-image"),
-                                  "square_thumbnail")
+                                  "square_thumbnail");
     ?>
 </div>
 
 <div id="image-display" class="image-display-js hidden" tabindex="0">
     <?php
-    echo $layoutHelper->getImages($attachments,
-                                  array("class" => "layout-image-display-image"),
-                                  "original")
+    $images = $layoutHelper->getImages($attachments,
+                                       array("class" => "layout-image-display-image"),
+                                       "original");
+    echo $layoutHelper->makeImagesDeferred($images);
     ?>
 </div>
 
@@ -33,6 +34,6 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
     <style>.image-display-js { display: none; }</style>
     <?php
     echo $layoutHelper->getNoscript($attachments,
-                                    array("class" => "layout-image-display-nojs-image"))
+                                    array("class" => "layout-image-display-nojs-image"));
     ?>
 </noscript>

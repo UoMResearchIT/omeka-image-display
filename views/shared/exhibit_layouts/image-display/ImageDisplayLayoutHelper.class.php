@@ -48,5 +48,25 @@ class ImageDisplayLayoutHelper {
 
         return $string;
     }
+
+    /**
+     * Turn the given string of image markup into an equivalent string
+     * of markup, but with the src transformed into a generic loading
+     * image and a data-src tag that can be used to defer image load.
+     *
+     * @param string $markup The string to transform.
+     */
+    public function makeImagesDeferred ($markup)
+    {
+        $images = new DOMDocument;
+        $images->loadHTML($markup);
+
+        foreach ($images->getElementsByTagName("img") as $image) {
+            $image->setAttribute("data-src", $image->getAttribute("src"));
+            $image->setAttribute("src", "/");
+        }
+
+        return $images->saveHTML();
+    }
 }
 ?>
