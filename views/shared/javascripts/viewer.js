@@ -5,8 +5,8 @@
  * @author Tristan Daniel Maat <tm@tlater.net>
  */
 
-// Set jquery variable. Evil, but for some reason the existing library
-// doesn't do this.
+// Set jquery variable. Evil variable name, I know, but this should
+// not affect anything, it's usually done by the library anyway.
 $ = jQuery;                            // eslint-disable-line no-native-reassign
 
 if (typeof ImageDisplay === "undefined")
