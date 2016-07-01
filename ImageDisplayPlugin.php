@@ -10,7 +10,8 @@
 class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
 {
     protected $_hooks = array(
-        'initialize'
+        'initialize',
+        'exhibit_builder_page_head'
     );
 
     protected $_filters = array(
@@ -28,6 +29,15 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
         );
 
         return $layouts;
+    }
+
+    /**
+     * Add the viewer script.
+     */
+    public function hookExhibitBuilderPageHead($args)
+    {
+        if (array_key_exists('image-display', $args['layouts']))
+            queue_js_file('viewer');
     }
 
     /**
