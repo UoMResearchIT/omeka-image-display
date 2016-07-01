@@ -5,48 +5,15 @@
  * @author Tristan Daniel Maat <tm@tlater.net>
  */
 
+// Set jquery variable. Evil, but for some reason the existing library
+// doesn't do this.
+$ = jQuery;                            // eslint-disable-line no-native-reassign
+
 if (typeof ImageDisplay === "undefined")
     /**
      * @namespace
      */
-    var ImageDisplay = {
-        /**
-         * Helper function to test whether a DOM element has a class.
-         * Thanks to stackoverflow: http://stackoverflow.com/a/6160317
-         *
-         * @param {HTMLElement} e - The element to test.
-         * @param {string} cls - The class to test for.
-         */
-        hasClass: function (e, cls)
-        {
-            return new RegExp('(\\s|^)' + cls + '(\\s|$)').test(e.className);
-        },
-
-        /**
-         * Helper function to add a class to a DOM element.
-         * Thanks to stackoverflow: http://stackoverflow.com/a/6160317
-         *
-         * @param {HTMLElement} e - The element to add the class to.
-         * @param {string} cls - The class to add to the element.
-         */
-        addClass: function (e, cls)
-        {
-            if (!ImageDisplay.hasClass(e, cls))
-                e.className += " " + cls;
-        },
-
-        /**
-         * Helper function to remove a class from a DOM element.
-         *
-         * @param {HTMLElement} e - The element to remove the class from.
-         * @param {string} cls - The class to remove from the element.
-         */
-        removeClass: function (e, cls)
-        {
-            if (ImageDisplay.hasClass(e, cls))
-                e.className = e.className.split(cls).join('');
-        }
-    };
+    var ImageDisplay = {};
 
 /**
  * Manages the image viewer interface.
@@ -146,7 +113,7 @@ ImageDisplay.Viewer = function ()
      */
     this.show = function ()
     {
-        ImageDisplay.removeClass(div, "hidden");
+        $(div).removeClass("hidden");
         div.focus();
     }
 
@@ -156,7 +123,11 @@ ImageDisplay.Viewer = function ()
      */
     this.hide = function ()
     {
-        ImageDisplay.addClass(div, "hidden");
+        $(div).addClass("hidden");
+
+        if (currentImage !== null)
+            images[currentImage].hide();
+        currentImage = null;
     }
 
     /**
@@ -225,8 +196,8 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
 
         // Make the galleryImage open the viewer when clicked.
         galleryImage.addEventListener("click", function () {
-            ImageDisplay.viewer.showImage(index);
             ImageDisplay.viewer.show();
+            ImageDisplay.viewer.showImage(index);
         }, false);
     }
 
@@ -236,7 +207,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
      */
     this.show = function ()
     {
-        ImageDisplay.addClass(viewerImage, "current");
+        $(viewerImage).addClass("current");
     }
 
     /**
@@ -245,11 +216,11 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
      */
     this.hide = function ()
     {
-        ImageDisplay.removeClass(viewerImage, "current");
+        $(viewerImage).removeClass("current");
     }
 }
 
-window.onload = function () {
+$(document).ready(function () {
     ImageDisplay.viewer = new ImageDisplay.Viewer;
     ImageDisplay.viewer.init();
-}
+});
