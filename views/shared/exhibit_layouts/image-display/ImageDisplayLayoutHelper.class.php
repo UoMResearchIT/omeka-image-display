@@ -68,5 +68,34 @@ class ImageDisplayLayoutHelper {
 
         return $images->saveHTML();
     }
+
+    /**
+     * Return a string that contains markup to describe an image's
+     * metadata. The layout is a container as follows:
+     * <div>
+     * <div class="metadata-title">Title</div>
+     * <div class="metadata-exhibit-description">Text</div>
+     * <div class="metadata-prop-title">Creator</div>
+     * <div class="metadata-prop-content">-Creator's name-</div>
+     * ...
+     * </div>
+     *
+     * @param \ExhibitBlockAttachment[] $attachments
+     *        The exhibit "attachments" selected by the user to
+     *        generate the images from.
+     *
+     * @param string $text
+     *        The description of the exhibit block as entered by the
+     *        user and passed to layout.php.
+     */
+    public function getImageMetadata ($attachments, $text)
+    {
+        $text . "</br>";
+
+        foreach ($attachments as $attachment)
+            $text .= all_element_texts($attachment->getItem());
+
+        return $text;
+    }
 }
 ?>

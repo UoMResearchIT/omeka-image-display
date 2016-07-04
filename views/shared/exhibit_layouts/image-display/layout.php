@@ -22,12 +22,21 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 </div>
 
 <div id="image-display" class="image-display-js hidden" tabindex="0">
-    <?php
-    $images = $layoutHelper->getImages($attachments,
-                                       array("class" => "layout-image-display-image"),
-                                       "original");
-    echo $layoutHelper->makeImagesDeferred($images);
-    ?>
+    <div id="display-left" class="image-display-body">
+        <div id="image-container" class="image-display-container">
+            <?php
+            $images = $layoutHelper->getImages($attachments,
+                                               array("class" => "layout-image-display-image"),
+                                               "original");
+            echo $layoutHelper->makeImagesDeferred($images);
+            ?>
+        </div>
+    </div>
+    <div id="display-right" class="image-display-body">
+        <div id="description-container" class="image-display-container">
+            <?php echo $layoutHelper->getImageMetadata($attachments, $text) ?>
+        </div>
+    </div>
 </div>
 
 <noscript>
