@@ -3,6 +3,9 @@
         "browser": true,
         "jquery": true
     },
+    "globals": {
+        "ImageDisplay": true
+    },
     "extends": "eslint:recommended",
     "rules": {
         "accessor-pairs": "error",
