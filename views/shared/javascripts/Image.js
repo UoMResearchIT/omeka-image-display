@@ -90,8 +90,6 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
     function zoom (event)
     {
-        console.log(event.deltaY);
-
         // event.deltaY is inverted.
         zoomLevel -= event.deltaY / 100;
 
@@ -102,7 +100,6 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
             zoomLevel = 6;
 
         $(viewerImage).css("transform", "scale(" + zoomLevel + ")");
-        console.log("scale(" + zoomLevel + "%)");
     }
 
     /**

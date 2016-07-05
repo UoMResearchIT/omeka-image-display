@@ -55,7 +55,6 @@ ImageDisplay.Viewer = function ()
             break;
 
         default:
-            console.log("Keypress received: " + code);
         }
     }
 
