@@ -12,7 +12,7 @@
   height: 100%;
 }
 .layout-image-display #image-display #display-left {
-  flex-grow: 3;
+  flex: 4 0;
 }
 .layout-image-display #image-display #display-left #image-container {
   justify-content: center;
@@ -22,11 +22,19 @@
   height: 100%;
 }
 .layout-image-display #image-display #display-right {
+  flex: 1 0;
   width: 30%;
   overflow: scroll;
+  background: #fff;
 }
 .layout-image-display #image-display #display-right #description-container {
   background: #fff;
+}
+.layout-image-display #image-display #display-right #description-container .element-set {
+  display: none;
+}
+.layout-image-display #image-display #display-right #description-container .element-set.current {
+  display: initial;
 }
 .layout-image-display #image-display .layout-image-display-image {
   display: none;

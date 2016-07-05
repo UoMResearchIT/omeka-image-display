@@ -82,10 +82,14 @@ ImageDisplay.Viewer = function ()
                 // find the corresponding viewer image.
                 var viewerImage = document.
                     getElementsByClassName("layout-image-display-image")[i];
+                var metadata =
+                    document.getElementsByClassName("element-set")[i];
 
                 // Create an Image object for the two, add it to the
                 // images array, and finally initialize the object.
-                images.push(new ImageDisplay.Image(galleryImage, viewerImage));
+                images.push(new ImageDisplay.Image(galleryImage,
+                                                   viewerImage,
+                                                   metadata));
                 images[i].init();
             }.bind(this)
         );
@@ -105,7 +109,7 @@ ImageDisplay.Viewer = function ()
         div.addEventListener("keydown", keyboardControls.bind(this));
 
         initializeImages();
-    }
+    };
 
     /**
      * Show the image viewer.
@@ -115,7 +119,7 @@ ImageDisplay.Viewer = function ()
     {
         $(div).removeClass("hidden");
         div.focus();
-    }
+    };
 
     /**
      * Hide the image viewer.
@@ -128,7 +132,7 @@ ImageDisplay.Viewer = function ()
         if (currentImage !== null)
             images[currentImage].hide();
         currentImage = null;
-    }
+    };
 
     /**
      * Show the image with the given index as the current image.
@@ -149,7 +153,7 @@ ImageDisplay.Viewer = function ()
         images[index].show();
 
         currentImage = index;
-    }
+    };
 };
 
 /**
@@ -163,7 +167,7 @@ ImageDisplay.Viewer = function ()
  * @param {HTMLElement} viewerImage -
  * The image to be displayed inside the viewer.
  */
-ImageDisplay.Image = function (galleryImage, viewerImage)
+ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
 {
     /**
      * The image in the layout's gallery.
@@ -174,10 +178,19 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
      */
 
     /**
-     * The image in the viewer
+     * The image in the viewer.
      * @private
      *
      * @member {HTMLElement} viewerImage
+     * @memberOf ImageDisplay.Image
+     */
+
+    /**
+     * The metadata of the image that is to be displayed in the
+     * viewer.
+     * @private
+     *
+     * @member {HTMLElement} metadata
      * @memberOf ImageDisplay.Image
      */
 
@@ -206,10 +219,10 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
         download.load(function () {
             console.log("Download finished");
             $(viewerImage).attr("src", $(this).attr("src"));
-        })
+        });
         download.attr("src", $(viewerImage).attr("data-src"));
         console.log(download);
-    }
+    };
 
     /**
      * Show the viewerImage.
@@ -218,7 +231,8 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
     this.show = function ()
     {
         $(viewerImage).addClass("current");
-    }
+        $(metadata).addClass("current");
+    };
 
     /**
      * Hide the viewerImage.
@@ -227,8 +241,9 @@ ImageDisplay.Image = function (galleryImage, viewerImage)
     this.hide = function ()
     {
         $(viewerImage).removeClass("current");
-    }
-}
+        $(metadata).removeClass("current");
+    };
+};
 
 $(document).ready(function () {
     ImageDisplay.viewer = new ImageDisplay.Viewer;

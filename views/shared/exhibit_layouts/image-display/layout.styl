@@ -18,7 +18,7 @@
     //   height 100%
 
     #display-left
-      flex-grow 3
+      flex 4 0
 
       #image-container
         justify-content center
@@ -29,12 +29,20 @@
         height 100%
 
     #display-right
+      flex 1 0
+
       width 30%
       overflow scroll
+      background white
 
       #description-container
         background white
 
+        .element-set
+          display none
+
+          &.current
+            display initial
 
     .layout-image-display-image
       display none
