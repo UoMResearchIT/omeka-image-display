@@ -186,6 +186,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
     function initPan (element)
     {
+        $(element).on("selectstart", false);
         $(viewerImage).on("dragstart", false);
 
         element.addEventListener("mousemove",
@@ -254,6 +255,17 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     };
 };
 
+/**
+ * The speed with which scrolling zooms the image.
+ */
 ImageDisplay.Image.ZOOM_SPEED = 1;
+
+/**
+ * The minimum zoom level.
+ */
 ImageDisplay.Image.ZOOM_MIN = 0.1;
+
+/**
+ * The maximum zoom level.
+ */
 ImageDisplay.Image.ZOOM_MAX = 6;
