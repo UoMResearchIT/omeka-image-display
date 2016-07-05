@@ -51,8 +51,45 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     var zoomLevel = 1;
 
     /**
+     * Whether the image is currently panning.
+     * @private
+     */
+    var panning = false;
+
+    /**
+     * The current location-defining variables of
+     * the viewer image.
+     * @private
+     */
+    var location = {
+        "x": 0,
+        "y": 0,
+        "mouseX": 0,
+        "mouseY": 0
+    };
+
+    /**
+     * Create the transformation string for the current pan/zoom
+     * combination.
+     * @private
+     *
+     * @return {string} -
+     * The string that performs the css transformation as requested by
+     * the user.
+     */
+    function getTransformation ()
+    {
+        return "scale(" + zoomLevel + ")" +
+            "translate(" +
+            location.x + "px," +
+            location.y + "px)";
+    }
+
+    /**
      * Find the index among the image's siblings.
      * @private
+     *
+     * @return {number} - The image index.
      */
     function getIndex ()
     {
@@ -99,7 +136,75 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
         if (zoomLevel > ImageDisplay.Image.ZOOM_MAX)
             zoomLevel = ImageDisplay.Image.ZOOM_MAX;
 
-        $(viewerImage).css("transform", "scale(" + zoomLevel + ")");
+        $(viewerImage).css("transform", getTransformation());
+    }
+
+    /**
+     * Pan the viewer image
+     * @private
+     *
+     * @param {Object} event -
+     * The mousedown event as fired by an eventListener.
+     */
+    function pan (event)
+    {
+        if (panning) {
+            location.x -= location.mouseX - event.clientX;
+            location.y -= location.mouseY - event.clientY;
+
+            location.mouseX = event.clientX;
+            location.mouseY = event.clientY;
+
+            $(viewerImage).css("transform", getTransformation());
+        }
+    }
+
+    /**
+     * Initialize the zoom feature with the given element as the
+     * main event listener - the DOM element wich will register
+     * all mouse movements.
+     * @private
+     *
+     * @param {HTMLElement} element -
+     * The element to add the event listeners to.
+     */
+    function initZoom (element)
+    {
+        element.addEventListener("mousewheel",
+                                 zoom.bind(this),
+                                 true);
+    }
+
+    /**
+     * Initialize the pan feature with the given element as the
+     * main event listener - the DOM element wich will register
+     * all mouse movements.
+     * @private
+     *
+     * @param {HTMLElement} element -
+     * The element to add the event listeners to.
+     */
+    function initPan (element)
+    {
+        $(viewerImage).on("dragstart", false);
+
+        element.addEventListener("mousemove",
+                                 pan.bind(this),
+                                 true);
+
+        element.addEventListener("mousedown",
+                                 function (e) {
+                                     panning = true;
+                                     location.mouseX = e.clientX;
+                                     location.mouseY = e.clientY;
+                                 },
+                                 true);
+
+        element.addEventListener("mouseup",
+                                 function () {
+                                     panning = false;
+                                 },
+                                 true);
     }
 
     /**
@@ -116,9 +221,13 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
             ImageDisplay.openViewer(index);
         }, false);
 
-        // Add the zoom listener to the image's container.
-        viewerImage.parentElement.addEventListener("mousewheel",
-                                                   zoom.bind(this));
+        // Initialize the zoom event listeners on the image's
+        // container.
+        initZoom(viewerImage.parentElement);
+
+        // Initialize the pan event listeners on the image's
+        // container.
+        initPan(viewerImage.parentElement);
 
         // Load the (deffered) image.
         loadImage();
