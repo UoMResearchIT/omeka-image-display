@@ -1,5 +1,5 @@
 /**
- * @file main.js
+ * @file
  * Handles object creation.
  */
 

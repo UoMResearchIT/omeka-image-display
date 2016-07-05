@@ -1,5 +1,5 @@
 /**
- * @file ImageDisplay.js
+ * @file
  * Namespace and global functions for the ImageDisplay package.
  *
  * @author Tristan Daniel Maat <tm@tlater.net>

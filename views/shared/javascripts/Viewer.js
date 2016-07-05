@@ -1,5 +1,5 @@
 /**
- * @file Viewer.js
+ * @file
  * Definition of the Viewer class that handles the image viewer
  * itself.
  *

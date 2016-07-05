@@ -1,5 +1,5 @@
 /**
- * @file viewer.js
+ * @file
  * Definition of the Image class which handles the individual images
  * and their descriptions.
  *
@@ -84,7 +84,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
     function zoom (event)
     {
-        console.log(event);
+        console.log(event.deltaY);
     }
 
     /**
