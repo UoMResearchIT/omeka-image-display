@@ -45,6 +45,12 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
 
     /**
+     * The current zoomlevel of the viewer image.
+     * @private
+     */
+    var zoomLevel = 1;
+
+    /**
      * Find the index among the image's siblings.
      * @private
      */
@@ -85,6 +91,18 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     function zoom (event)
     {
         console.log(event.deltaY);
+
+        // event.deltaY is inverted.
+        zoomLevel -= event.deltaY / 100;
+
+        if (zoomLevel < 0.1)
+            zoomLevel = 0.1;
+
+        if (zoomLevel > 6)
+            zoomLevel = 6;
+
+        $(viewerImage).css("transform", "scale(" + zoomLevel + ")");
+        console.log("scale(" + zoomLevel + "%)");
     }
 
     /**
@@ -101,8 +119,9 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
             ImageDisplay.openViewer(index);
         }, false);
 
-        // Add the zoom listener.
-        viewerImage.addEventListener("mousewheel", zoom.bind(this));
+        // Add the zoom listener to the image's container.
+        viewerImage.parentElement.addEventListener("mousewheel",
+                                                   zoom.bind(this));
 
         // Load the (deffered) image.
         loadImage();
