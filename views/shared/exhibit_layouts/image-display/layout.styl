@@ -16,9 +16,6 @@
     .image-display-body
       height 100%
 
-    // .image-display-container
-    //   height 100%
-
     #display-left
       flex 4 0
 
@@ -45,7 +42,17 @@
           display none
 
           &.current
-            display initial
+            display table
+
+            .element
+              display table-row
+
+              .element-text
+              h3
+                display table-cell
+
+                font-size inherit
+                margin 0
 
     .layout-image-display-image
       display none

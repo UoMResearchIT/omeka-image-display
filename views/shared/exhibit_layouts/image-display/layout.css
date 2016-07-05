@@ -35,7 +35,16 @@
   display: none;
 }
 .layout-image-display #image-display #display-right #description-container .element-set.current {
-  display: initial;
+  display: table;
+}
+.layout-image-display #image-display #display-right #description-container .element-set.current .element {
+  display: table-row;
+}
+.layout-image-display #image-display #display-right #description-container .element-set.current .element .element-text,
+.layout-image-display #image-display #display-right #description-container .element-set.current .element h3 {
+  display: table-cell;
+  font-size: inherit;
+  margin: 0;
 }
 .layout-image-display #image-display .layout-image-display-image {
   display: none;
