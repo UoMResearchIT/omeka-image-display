@@ -91,13 +91,13 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     function zoom (event)
     {
         // event.deltaY is inverted.
-        zoomLevel -= event.deltaY / 100;
+        zoomLevel -= event.deltaY * ImageDisplay.Image.ZOOM_SPEED / 100;
 
-        if (zoomLevel < 0.1)
-            zoomLevel = 0.1;
+        if (zoomLevel < ImageDisplay.ZOOM_MIN)
+            zoomLevel = ImageDisplay.ZOOM_MIN;
 
-        if (zoomLevel > 6)
-            zoomLevel = 6;
+        if (zoomLevel > ImageDisplay.ZOOM_MAX)
+            zoomLevel = ImageDisplay.ZOOM_MIN;
 
         $(viewerImage).css("transform", "scale(" + zoomLevel + ")");
     }
@@ -144,3 +144,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
         $(metadata).removeClass("current");
     };
 };
+
+ImageDisplay.Image.ZOOM_SPEED = 100;
+ImageDisplay.Image.ZOOM_MIN = 0.1;
+ImageDisplay.Image.ZOOM_MAX = 6;
