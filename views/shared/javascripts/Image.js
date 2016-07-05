@@ -93,11 +93,11 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
         // event.deltaY is inverted.
         zoomLevel -= event.deltaY * ImageDisplay.Image.ZOOM_SPEED / 100;
 
-        if (zoomLevel < ImageDisplay.ZOOM_MIN)
-            zoomLevel = ImageDisplay.ZOOM_MIN;
+        if (zoomLevel < ImageDisplay.Image.ZOOM_MIN)
+            zoomLevel = ImageDisplay.Image.ZOOM_MIN;
 
-        if (zoomLevel > ImageDisplay.ZOOM_MAX)
-            zoomLevel = ImageDisplay.ZOOM_MIN;
+        if (zoomLevel > ImageDisplay.Image.ZOOM_MAX)
+            zoomLevel = ImageDisplay.Image.ZOOM_MAX;
 
         $(viewerImage).css("transform", "scale(" + zoomLevel + ")");
     }
@@ -145,6 +145,6 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     };
 };
 
-ImageDisplay.Image.ZOOM_SPEED = 100;
+ImageDisplay.Image.ZOOM_SPEED = 1;
 ImageDisplay.Image.ZOOM_MIN = 0.1;
 ImageDisplay.Image.ZOOM_MAX = 6;
