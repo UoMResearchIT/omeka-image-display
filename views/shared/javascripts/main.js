@@ -4,7 +4,6 @@
  */
 
 // Define the standard jQuery variable.
-
 $ = jQuery;                            // eslint-disable-line no-native-reassign
 
 $(document).ready(function () {

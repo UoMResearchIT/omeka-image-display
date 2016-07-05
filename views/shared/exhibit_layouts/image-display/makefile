@@ -1,2 +1,2 @@
-layout.css:
-	stylus layout.styl
+layout.css: layout.styl
+	stylus < $^ > $@
