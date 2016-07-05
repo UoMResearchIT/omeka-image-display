@@ -240,6 +240,8 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
     this.show = function ()
     {
+        this.reset();
+
         $(viewerImage).addClass("current");
         $(metadata).addClass("current");
     };
@@ -252,6 +254,22 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     {
         $(viewerImage).removeClass("current");
         $(metadata).removeClass("current");
+    };
+
+    /**
+     * Reset the viewerImage's pan and zoom.
+     * @function
+     */
+    this.reset = function ()
+    {
+        zoomLevel = 1;
+
+        location.x = 0;
+        location.y = 0;
+        location.mouseX = 0;
+        location.mouseY = 0;
+
+        $(viewerImage).css("transform", getTransformation());
     };
 };
 
