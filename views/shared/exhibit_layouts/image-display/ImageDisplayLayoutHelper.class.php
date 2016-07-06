@@ -71,14 +71,7 @@ class ImageDisplayLayoutHelper {
 
     /**
      * Return a string that contains markup to describe an image's
-     * metadata. The layout is a container as follows:
-     * <div>
-     * <div class="metadata-title">Title</div>
-     * <div class="metadata-exhibit-description">Text</div>
-     * <div class="metadata-prop-title">Creator</div>
-     * <div class="metadata-prop-content">-Creator's name-</div>
-     * ...
-     * </div>
+     * metadata.
      *
      * @param \ExhibitBlockAttachment[] $attachments
      *        The exhibit "attachments" selected by the user to
@@ -90,10 +83,27 @@ class ImageDisplayLayoutHelper {
      */
     public function getImageMetadata ($attachments, $text)
     {
-        $text . "</br>";
+        $markup = new DOMDocument;
+        $item_link = new DOMDocument;
+        $text .= "</br>";
 
-        foreach ($attachments as $attachment)
-            $text .= all_element_texts($attachment->getItem());
+        foreach ($attachments as $attachment) {
+            // Generate the metadata markup.
+            $markup->loadHTML(all_element_texts($attachment->getItem()));
+
+            // Get a link to the item page.
+            $item_link->loadHTML(link_to_item("Go to image page",
+                                              array("class" => "item-link"),
+                                              "show",
+                                              $attachment->getItem()));
+            $node = $item_link->getElementsByTagName("a")->item(0);
+            $node = $markup->importNode($node, true);
+
+            // Append the link to the markup and store the div.
+            $root = $markup->getElementsByTagName("div")->item(0);
+            $root->appendChild($node);
+            $text .= $markup->saveHTML();
+        }
 
         return $text;
     }

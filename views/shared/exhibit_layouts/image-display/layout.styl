@@ -29,23 +29,59 @@
 
     #display-right
       z-index 1
-
       flex 1 0
 
-      overflow scroll
       background white
+      overflow-y scroll
+      overflow-x hidden
 
       #description-container
-        background white
+        width 100%
+        height 100%
 
+        padding 20px
+
+        // To ensure that the link at the bottom does not hide text,
+        // we need padding.
+        padding-bottom 36px
+
+        .item-link
+          text-align center
+          display table-footer-group
+
+        // Each image has an element set, which needs to be set to
+        // display none at first, and will be set to .current when it
+        // should be displayed.
         .element-set
           display none
 
           &.current
             display table
+            height 100%
+            width 100%
 
+            // The first element is always the title. Hide the "Title"
+            // tag, and make the title pretty.
+            .element:first-child
+              display block
+              font-size 20px
+              margin-top 20px
+              line-height 1.1
+              font-weight bold
+              margin-bottom 15px
+
+              h3
+                display none
+
+              .element-text
+                display block
+                text-align center
+
+            // All other elements are metadata. Create a table with a
+            // tag - description layout.
             .element
-              display table-row
+              display table
+              width 100%
 
               .element-text
               h3
@@ -54,6 +90,12 @@
                 font-size inherit
                 margin 0
 
+              .element-text
+                text-align right
+
+    // Images are hidden at first, and made visible through
+    // javascript. We want them to fill the container in one
+    // direction, hence the max-height and max-width.
     .layout-image-display-image
       display none
       max-width 100%
@@ -65,10 +107,13 @@
     &.hidden
       display none
 
+  // Images displayed when javascript is not enabled
   &-nojs-image
     width 100%
 
+  // Images displayed in the overview gallery
   &-gallery
     width 100%
     &-image
       width 25%
+      cursor pointer
