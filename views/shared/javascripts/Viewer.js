@@ -95,8 +95,12 @@ ImageDisplay.Viewer = function ()
         // Find and set the image display div.
         div = document.getElementById("image-display");
 
-        // Add keyboard listeners
+        // Add keyboard listeners.
         div.addEventListener("keydown", keyboardControls.bind(this));
+
+        // Make the close button functional.
+        var button = document.getElementById("image-display-close-button");
+        button.addEventListener("click", this.hide.bind(this));
 
         initializeImages();
     };
