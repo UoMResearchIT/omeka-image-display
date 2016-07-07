@@ -33,6 +33,9 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
         </div>
     </div>
     <div id="display-right" class="image-display-body">
+        <button id="image-display-close-button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <div id="description-container" class="image-display-container">
             <?php echo $layoutHelper->getImageMetadata($attachments, $text) ?>
         </div>

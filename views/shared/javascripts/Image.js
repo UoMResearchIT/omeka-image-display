@@ -73,16 +73,24 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      * combination.
      * @private
      *
-     * @return {string} -
-     * The string that performs the css transformation as requested by
-     * the user.
+     * @return {Object} -
+     * The object that performs the css transformation as requested by
+     * the user when passed to $.css.
      */
     function getTransformation ()
     {
-        return "scale(" + zoomLevel + ")" +
+        var transformation = "scale(" + zoomLevel + ")" +
             "translate(" +
             location.x + "px," +
             location.y + "px)";
+
+        return {
+            "-webkit-transform": transformation,
+            "-moz-transform": transformation,
+            "-ms-transform": transformation,
+            "-o-transform": transformation,
+            "transform": transformation
+        };
     }
 
     /**
@@ -149,7 +157,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
             zoomLevel = ImageDisplay.Image.ZOOM_MAX;
 
         // Apply the transformation
-        $(viewerImage).css("transform", getTransformation());
+        $(viewerImage).css(getTransformation());
 
         // Inhibit other events
         if (event.preventDefault)
@@ -173,7 +181,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
             location.mouseX = event.clientX;
             location.mouseY = event.clientY;
 
-            $(viewerImage).css("transform", getTransformation());
+            $(viewerImage).css(getTransformation());
         }
     }
 
@@ -297,7 +305,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
         location.mouseX = 0;
         location.mouseY = 0;
 
-        $(viewerImage).css("transform", getTransformation());
+        $(viewerImage).css(getTransformation());
     };
 };
 
