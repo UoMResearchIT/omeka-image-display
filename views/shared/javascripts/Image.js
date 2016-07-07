@@ -127,16 +127,34 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
     function zoom (event)
     {
-        // event.deltaY is inverted.
-        zoomLevel -= event.deltaY * ImageDisplay.Image.ZOOM_SPEED / 100;
+        // If the default event is too imprecise, try other events, if
+        // available. Otherwise disable zoom.
+        if (event.deltaMode === 1 ||
+            event.deltaMode === 2)
+            return true;
 
+        // Calculate the movement speed (different between firefox and
+        // others).
+        var movement = event.deltaX;
+        if (!event.deltaX)
+            movement = event.wheelDelta / 120 || -event.detail;
+
+        // Calculate the new zoom level and cap it to the set
+        // constants.
+        zoomLevel -= movement / 100 * ImageDisplay.Image.ZOOM_SPEED;
         if (zoomLevel < ImageDisplay.Image.ZOOM_MIN)
             zoomLevel = ImageDisplay.Image.ZOOM_MIN;
 
         if (zoomLevel > ImageDisplay.Image.ZOOM_MAX)
             zoomLevel = ImageDisplay.Image.ZOOM_MAX;
 
+        // Apply the transformation
         $(viewerImage).css("transform", getTransformation());
+
+        // Inhibit other events
+        if (event.preventDefault)
+            event.preventDefault();
+        return false;
     }
 
     /**
@@ -170,9 +188,19 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
      */
     function initZoom (element)
     {
+        element.addEventListener("wheel",
+                                 zoom.bind(this),
+                                 false);
+
+        // Old event
         element.addEventListener("mousewheel",
                                  zoom.bind(this),
-                                 true);
+                                 false);
+
+        // Firefox-specific old event.
+        element.addEventListener("DOMMouseScroll",
+                                 zoom.bind(this),
+                                 false);
     }
 
     /**
