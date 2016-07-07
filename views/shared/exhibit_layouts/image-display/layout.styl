@@ -32,6 +32,13 @@ appearance()
   -moz-appearance arguments
   appearance arguments
 
+transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  -ms-transition arguments
+  -o-transition arguments
+  transition arguments
+
 /**
  * Styles
  */
@@ -49,6 +56,12 @@ appearance()
     width 100%
 
     outline none
+
+    transition opacity .2s ease-in-out
+
+    &.hidden
+      height 0
+      opacity 0
 
     .image-display-body
       height 100%
@@ -171,9 +184,6 @@ appearance()
 
       &.current
         display initial
-
-    &.hidden
-      display none
 
   // Images displayed when javascript is not enabled
   &-nojs-image
