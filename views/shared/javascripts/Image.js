@@ -227,21 +227,29 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
 
         element.addEventListener("mousemove",
                                  pan.bind(this),
-                                 true);
+                                 false);
 
         element.addEventListener("mousedown",
                                  function (e) {
                                      panning = true;
                                      location.mouseX = e.clientX;
                                      location.mouseY = e.clientY;
+
+                                     if (event.preventDefault)
+                                         event.preventDefault();
+                                     return false;
                                  },
-                                 true);
+                                 false);
 
         element.addEventListener("mouseup",
                                  function () {
                                      panning = false;
+
+                                     if (event.preventDefault)
+                                         event.preventDefault();
+                                     return false;
                                  },
-                                 true);
+                                 false);
     }
 
     /**
