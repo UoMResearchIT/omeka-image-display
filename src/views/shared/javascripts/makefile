@@ -5,3 +5,9 @@ viewer.js: $(files)
 
 documentation: $(files)
 	jsdoc $^
+
+
+.PHONY: clean
+
+clean:
+	-rm viewer.js
