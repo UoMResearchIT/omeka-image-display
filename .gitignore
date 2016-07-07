@@ -1,3 +1,4 @@
-/views/shared/javascripts/out/
-/views/shared/exhibit_layouts/image-display/layout.css
-/views/shared/javascripts/viewer.js
+/src/views/shared/javascripts/out/
+/src/views/shared/exhibit_layouts/image-display/layout.css
+/src/views/shared/javascripts/viewer.js
+/ImageDisplay/
