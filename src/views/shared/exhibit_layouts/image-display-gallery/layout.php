@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/ImageDisplayLayoutHelper.class.php');
+require_once(dirname(__DIR__) . "/ImageDisplayLayoutHelper.class.php");
 
 /**
  * layout.php
@@ -13,10 +13,10 @@ require_once(dirname(__FILE__) . '/ImageDisplayLayoutHelper.class.php');
 $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 ?>
 
-<div class="image-display-gallery">
+<div class="image-display-gallery-gallery">
     <?php
     echo $layoutHelper->getImages($attachments,
-                                  array("class" => "layout-image-display-gallery-image"),
+                                  array("class" => "layout-image-display-gallery-gallery-image"),
                                   "square_thumbnail");
     ?>
 </div>

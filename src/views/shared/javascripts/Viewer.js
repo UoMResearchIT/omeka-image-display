@@ -67,7 +67,7 @@ ImageDisplay.Viewer = function ()
     {
         // Fill the images array. For each gallery image
         [].forEach.call(
-            document.getElementsByClassName("layout-image-display-gallery-image"),
+            document.getElementsByClassName("layout-image-display-gallery-gallery-image"),
             function (galleryImage, i) {
                 // find the corresponding viewer image.
                 var viewerImage = document.
