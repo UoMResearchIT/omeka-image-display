@@ -59,30 +59,55 @@ ImageDisplay.Viewer = function ()
     }
 
     /**
+     * Return the corresponding viewer image and its metadata.
+     * @private
+     *
+     * @param {number} i -
+     * The index of the galleryImage in the combined className arrays
+     * of the classes "layout-image-display-gallery-gallery-image" and
+     * "layout-image-display-file".
+     *
+     * @return {Object} -
+     * An object with the information encoded as .viewerImage and .metadata.
+     */
+    function findViewerImage (i)
+    {
+        var viewerImage =
+            document.getElementsByClassName("layout-image-display-image")[i];
+        var metadata =
+            document.getElementsByClassName("element-set")[i];
+
+        return {
+            "viewerImage": viewerImage,
+            "metadata": metadata
+        };
+    }
+
+    /**
      * Initialize the images array.
      * @function
      * @private
      */
     function initializeImages ()
     {
-        // Fill the images array. For each gallery image
-        [].forEach.call(
-            document.getElementsByClassName("layout-image-display-gallery-gallery-image"),
-            function (galleryImage, i) {
-                // find the corresponding viewer image.
-                var viewerImage = document.
-                    getElementsByClassName("layout-image-display-image")[i];
-                var metadata =
-                    document.getElementsByClassName("element-set")[i];
+        var imageClass = "layout-image-display-container-image";
+        var containerImages = document.getElementsByClassName(imageClass);
 
-                // Create an Image object for the two, add it to the
-                // images array, and finally initialize the object.
-                images.push(new ImageDisplay.Image(galleryImage,
-                                                   viewerImage,
-                                                   metadata));
-                images[i].init();
-            }.bind(this)
-        );
+        // Fill the images array. For each gallery image
+        [].forEach.call(containerImages, function (containerImage, i) {
+            // find the corresponding viewer image.
+            var image = findViewerImage(i);
+
+            console.log(image);
+            console.log(containerImage);
+
+            // Create an Image object for the two, add it to the
+            // images array, and finally initialize the object.
+            images.push(new ImageDisplay.Image(containerImage,
+                                               image.viewerImage,
+                                               image.metadata));
+            images[i].init();
+        }.bind(this));
     }
 
     /**

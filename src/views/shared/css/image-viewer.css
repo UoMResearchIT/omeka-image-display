@@ -1,0 +1,166 @@
+/**
+ * image-viewer.styl
+ * CSS styling for the ImageDisplay plugin.
+ *
+ * @author Tristan Maat
+ */
+/**
+ * Cross-browser support helper functions/mixins
+ */
+/**
+ * Styles
+ */
+.layout-image-display-file #image-display,
+.layout-image-display-gallery #image-display {
+  justify-content: space-around;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.layout-image-display-file #image-display.hidden,
+.layout-image-display-gallery #image-display.hidden {
+  height: 0;
+  opacity: 0;
+}
+.layout-image-display-file #image-display .image-display-body,
+.layout-image-display-gallery #image-display .image-display-body {
+  height: 100%;
+}
+.layout-image-display-file #image-display #display-left,
+.layout-image-display-gallery #image-display #display-left {
+  -webkit-box-flex: 4 0;
+  width: 50%;
+  -webkit-flex: 4 0;
+  -ms-flex: 4 0;
+  flex: 4 0;
+}
+.layout-image-display-file #image-display #display-left #image-container,
+.layout-image-display-gallery #image-display #display-left #image-container {
+  justify-content: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  background: rgba(0,0,0,0.5);
+  height: 100%;
+}
+.layout-image-display-file #image-display #display-right,
+.layout-image-display-gallery #image-display #display-right {
+  z-index: 1;
+  -webkit-box-flex: 1 0;
+  width: 50%;
+  -webkit-flex: 1 0;
+  -ms-flex: 1 0;
+  flex: 1 0;
+  background: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+.layout-image-display-file #image-display #display-right #image-display-close-button,
+.layout-image-display-gallery #image-display #display-right #image-display-close-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #444 !important;
+  font: 13.3333px Arial;
+  font-weight: 700;
+  font-size: 25px;
+  margin: 5px 5px 0 0;
+  float: right;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+  background: 0 0;
+  cursor: pointer;
+  opacity: 0.2;
+}
+.layout-image-display-file #image-display #display-right #image-display-close-button:hover,
+.layout-image-display-gallery #image-display #display-right #image-display-close-button:hover {
+  opacity: 0.7;
+}
+.layout-image-display-file #image-display #display-right #description-container,
+.layout-image-display-gallery #image-display #display-right #description-container {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  padding-bottom: 36px;
+  padding-top: 0;
+}
+.layout-image-display-file #image-display #display-right #description-container .item-link,
+.layout-image-display-gallery #image-display #display-right #description-container .item-link {
+  text-align: center;
+  display: table-footer-group;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set {
+  display: none;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element:first-child,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element:first-child {
+  display: block;
+  font-size: 20px;
+  margin-top: 20px;
+  line-height: 1.1;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element:first-child h3,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element:first-child h3 {
+  display: none;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element:first-child .element-text,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element:first-child .element-text {
+  display: block;
+  text-align: center;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element {
+  display: table;
+  width: 100%;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element .element-text,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element .element-text,
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element h3,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element h3 {
+  display: table-cell;
+  font-size: inherit;
+  margin: 0;
+}
+.layout-image-display-file #image-display #display-right #description-container .element-set.current .element .element-text,
+.layout-image-display-gallery #image-display #display-right #description-container .element-set.current .element .element-text {
+  text-align: right;
+}
+.layout-image-display-file #image-display .layout-image-display-image,
+.layout-image-display-gallery #image-display .layout-image-display-image {
+  display: none;
+  max-width: 100%;
+  max-height: 100%;
+}
+.layout-image-display-file #image-display .layout-image-display-image.current,
+.layout-image-display-gallery #image-display .layout-image-display-image.current {
+  display: initial;
+}
+

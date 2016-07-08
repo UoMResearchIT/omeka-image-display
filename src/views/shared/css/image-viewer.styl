@@ -1,0 +1,187 @@
+/**
+ * image-viewer.styl
+ * CSS styling for the ImageDisplay plugin.
+ *
+ * @author Tristan Maat
+ */
+
+/**
+ * Cross-browser support helper functions/mixins
+ */
+display-flex()
+  display -webkit-box
+  display -ms-flexbox
+  display -webkit-flex
+  display flex
+
+flex()
+  -webkit-box-flex arguments
+  // If the browser is old this at least avoids collapsing
+  width 50%
+  -webkit-flex arguments
+  -ms-flex arguments
+  flex arguments
+
+box-shadow()
+  -webkit-box-shadow arguments
+  -moz-box-shadow arguments
+  box-shadow arguments
+
+appearance()
+  -webkit-appearance arguments
+  -moz-appearance arguments
+  appearance arguments
+
+transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  -ms-transition arguments
+  -o-transition arguments
+  transition arguments
+
+/**
+ * Styles
+ */
+.layout-image-display-file
+.layout-image-display-gallery
+  #image-display
+    justify-content space-around
+    align-items center
+    display-flex()
+
+    position fixed
+    left 0
+    top 0
+
+    height 100%
+    width 100%
+
+    outline none
+
+    transition opacity .2s ease-in-out
+
+    &.hidden
+      height 0
+      opacity 0
+
+    .image-display-body
+      height 100%
+
+    #display-left
+      flex 4 0
+
+      #image-container
+        justify-content center
+        align-items center
+        display-flex()
+
+        background rgba(0, 0, 0, .5)
+        height 100%
+
+    #display-right
+      z-index 1
+      flex 1 0
+
+      background white
+      overflow-y scroll
+      overflow-x hidden
+
+      box-shadow 0 5px 15px rgba(0, 0, 0, .5)
+
+      #image-display-close-button
+        // Disable button browser standards
+        appearance none
+
+        // Omeka has set button colors with important, need important
+        // to override
+        color #444 !important
+        font 13.3333px Arial
+        font-weight 700
+        font-size 25px
+
+        // Set box location and properties
+        margin 5px 5px 0 0
+        float right
+        padding 0
+        border 0
+
+        // Let the outline closely match the cross
+        line-height 1
+
+        // Set other features
+        background 0 0
+        cursor pointer
+        opacity .2
+
+        &:hover
+          opacity .7
+
+      #description-container
+        width 100%
+        height 100%
+
+        padding 20px
+
+        // To ensure that the link at the bottom does not hide text,
+        // we need padding.
+        padding-bottom 36px
+        padding-top 0
+
+        .item-link
+          text-align center
+          display table-footer-group
+
+        // Each image has an element set, which needs to be set to
+        // display none at first, and will be set to .current when it
+        // should be displayed.
+        .element-set
+          display none
+
+          &.current
+            display table
+            height 100%
+            width 100%
+
+            // The first element is always the title. Hide the "Title"
+            // tag, and make the title pretty.
+            .element:first-child
+              display block
+              font-size 20px
+              margin-top 20px
+              line-height 1.1
+              font-weight bold
+              margin-bottom 15px
+
+              h3
+                display none
+
+              .element-text
+                display block
+                text-align center
+
+            // All other elements are metadata. Create a table with a
+            // tag - description layout.
+            .element
+              display table
+              width 100%
+
+              .element-text
+              h3
+                display table-cell
+
+                font-size inherit
+                margin 0
+
+              .element-text
+                text-align right
+
+    // Images are hidden at first, and made visible through
+    // javascript. We want them to fill the container in one
+    // direction, hence the max-height and max-width.
+    .layout-image-display-image
+      display none
+      max-width 100%
+      max-height 100%
+
+      &.current
+        display initial

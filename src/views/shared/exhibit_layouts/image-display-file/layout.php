@@ -13,11 +13,11 @@ require_once(dirname(__DIR__) . "/ImageDisplayLayoutHelper.class.php");
 $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 ?>
 
-<div class="container">
+<div class="layout-image-display-file-container">
     <?php
     echo $layoutHelper->getImages($attachments,
-                                  array("class" => "layout-image-display-container-image"),
-                                  "square_thumbnail");
+                                  array("class" => "layout-image-display-file-container-image"),
+                                  "thumbnail");
     ?>
 </div>
 
@@ -46,6 +46,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
     <style>.image-display-js { display: none; }</style>
     <?php
     echo $layoutHelper->getNoscript($attachments,
-                                    array("class" => "layout-image-display-nojs-image"));
+                                    array("class" => "layout-image-display-nojs-image"),
+                                    "thumbnail");
     ?>
 </noscript>

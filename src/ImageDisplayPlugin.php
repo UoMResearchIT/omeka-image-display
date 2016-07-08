@@ -28,6 +28,11 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
             'description' => __('A gallery layout with better image navigation.')
         );
 
+        $layouts['image-display-file'] = array(
+            'name' => __('Image Display File'),
+            'description' => __('A single-file layout with better image navigation.')
+        );
+
         return $layouts;
     }
 
@@ -36,8 +41,11 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookExhibitBuilderPageHead($args)
     {
-        if (array_key_exists('image-display-gallery', $args['layouts']))
+        if (array_key_exists('image-display-gallery', $args['layouts']) ||
+            array_key_exists('image-display-file', $args['layouts'])) {
             queue_js_file('viewer');
+            queue_css_file('image-viewer');
+        }
     }
 
     /**

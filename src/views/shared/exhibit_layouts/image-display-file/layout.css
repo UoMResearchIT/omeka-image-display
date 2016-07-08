@@ -1,0 +1,21 @@
+/**
+ * layout.styl
+ * CSS styling for the ImageDisplay plugin.
+ *
+ * @author Tristan Maat
+ */
+/**
+ * Styles
+ */
+.layout-image-display-file .nojs-image {
+  width: 100%;
+}
+.layout-image-display-file .container {
+  height: 300px;
+}
+.layout-image-display-file .container .layout-image-display-container-image {
+  max-height: 100%;
+  max-width: 100%;
+  cursor: pointer;
+}
+
