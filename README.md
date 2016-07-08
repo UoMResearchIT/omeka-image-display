@@ -18,10 +18,10 @@ Then, simply execute `make` in the root directory of the project.
 Compilation will create a directory named "ImageDisplay" - the
 plugin. Ensure the correct permissions are set, usually:
 
-`
+```bash
 find ImageDisplay -type f -exec chmod 644 {} +
 find ImageDisplay -type d -exec chmod 755 {} +
-`
+```
 
 and move this directory to the omeka plugins directory.
 
