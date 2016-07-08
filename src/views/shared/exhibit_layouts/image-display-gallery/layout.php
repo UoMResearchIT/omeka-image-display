@@ -45,7 +45,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 <noscript>
     <style>.image-display-js { display: none; }</style>
     <?php
-    echo $layoutHelper->getNoscript($attachments,
-                                    array("class" => "layout-image-display-nojs-image"));
+    /* echo $layoutHelper->getNoscript($attachments,
+     *                                 array("class" => "layout-image-display-nojs-image"));*/
     ?>
 </noscript>
