@@ -27,7 +27,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
             <?php
             $images = $layoutHelper->getImages($attachments,
                                                array("class" => "layout-image-display-image"),
-                                               "original");
+                                               "fullsize");
             echo $layoutHelper->makeImagesDeferred($images);
             ?>
         </div>

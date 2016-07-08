@@ -23,9 +23,9 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function filterExhibitLayouts ($layouts)
     {
-        $layouts['image-display'] = array(
-            'name' => __('Image Display'),
-            'description' => __('A layout with better image navigation')
+        $layouts['image-display-gallery'] = array(
+            'name' => __('Image Display Gallery'),
+            'description' => __('A gallery layout with better image navigation.')
         );
 
         return $layouts;
@@ -36,7 +36,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookExhibitBuilderPageHead($args)
     {
-        if (array_key_exists('image-display', $args['layouts']))
+        if (array_key_exists('image-display-gallery', $args['layouts']))
             queue_js_file('viewer');
     }
 
