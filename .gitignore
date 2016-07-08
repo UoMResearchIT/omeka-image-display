@@ -1,4 +1,5 @@
 /src/views/shared/javascripts/out/
-/src/views/shared/exhibit_layouts/image-display/layout.css
 /src/views/shared/javascripts/viewer.js
 /ImageDisplay/
+
+*.css
