@@ -6,14 +6,19 @@ layout_dir = views/shared/exhibit_layouts/image-display
 javascript_files = viewer.js
 javascript_dir = views/shared/javascripts
 
+image_files = ajax-loader.gif
+image_dir = views/shared/images
+
 
 ImageDisplay: css javascript
 	mkdir -p $@/$(layout_dir)
 	mkdir -p $@/$(javascript_dir)
+	mkdir -p $@/$(image_dir)
 
 	cp $(addprefix src/,$(src_files)) $@
 	cp $(addprefix src/$(layout_dir)/,$(layout_files)) $@/$(layout_dir)
 	cp $(addprefix src/$(javascript_dir)/,$(javascript_files)) $@/$(javascript_dir)
+	cp $(addprefix src/$(image_dir)/,$(image_files)) $@/$(image_dir)
 
 
 .PHONY: css javascript clean

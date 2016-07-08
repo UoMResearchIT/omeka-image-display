@@ -61,9 +61,20 @@ class ImageDisplayLayoutHelper {
         $images = new DOMDocument;
         $images->loadHTML($markup);
 
+    //     $long = "";
+
+    //     $view = get_view();
+    //     $paths = $view->getAssetPaths();
+    //     foreach ($paths as $path) {
+    //         list($physical, $web) = $path;
+    //         $long .= '    ' . $web . '/';
+    //     }
+
+    // throw new InvalidArgumentException( __("Could not find file %s!", $long) );
+
         foreach ($images->getElementsByTagName("img") as $image) {
             $image->setAttribute("data-src", $image->getAttribute("src"));
-            $image->setAttribute("src", "http://tristan.mnemosyne.manchester.ac.uk/files/square_thumbnails/8877ce83bf01667e398bf3f991b7524a.jpg");
+            $image->setAttribute("src", img("ajax-loader.gif"));
         }
 
         return $images->saveHTML();
