@@ -21,7 +21,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
     ?>
 </div>
 
-<div id="image-display" class="image-display-js hidden" tabindex="0">
+<div class="image-display image-display-js hidden" tabindex="0">
     <div id="display-left" class="image-display-body">
         <div id="image-container" class="image-display-container">
             <?php
@@ -33,7 +33,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
         </div>
     </div>
     <div id="display-right" class="image-display-body">
-        <button id="image-display-close-button" aria-label="Close">
+        <button class="image-display-close-button" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <div id="description-container" class="image-display-container">

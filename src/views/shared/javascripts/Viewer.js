@@ -34,9 +34,9 @@ ImageDisplay.Viewer = function ()
      * The image display div. Set after init is called.
      * @private
      *
-     * @member {?HTMLElement} div
+     * @member {?HTMLElement[]} div
      */
-    var div = null;
+    var divs = null;
 
     /**
      * The keyboard controls function.
@@ -44,14 +44,16 @@ ImageDisplay.Viewer = function ()
      * @private
      *
      * @param {Object} event - The key event as fired by an eventListener.
+     * @param {number} index -
+     * The index of the image-display DOM element that fired the event.
      */
-    function keyboardControls (event)
+    function keyboardControls (event, index)
     {
         var code = event.keyCode || event.which;
 
         switch (code) {
         case 27:
-            this.hide();
+            this.hide(index);
             break;
 
         default:
@@ -98,9 +100,6 @@ ImageDisplay.Viewer = function ()
             // find the corresponding viewer image.
             var image = findViewerImage(i);
 
-            console.log(image);
-            console.log(containerImage);
-
             // Create an Image object for the two, add it to the
             // images array, and finally initialize the object.
             images.push(new ImageDisplay.Image(containerImage,
@@ -118,14 +117,26 @@ ImageDisplay.Viewer = function ()
     this.init = function ()
     {
         // Find and set the image display div.
-        div = document.getElementById("image-display");
+        divs = document.getElementsByClassName("image-display");
 
         // Add keyboard listeners.
-        div.addEventListener("keydown", keyboardControls.bind(this));
+        [].forEach.call(divs, function (div, i) {
+            div.addEventListener("keydown", function (e) {
+                keyboardControls.bind(this)(e, i);
+            }.bind(this));
+        }.bind(this));
 
-        // Make the close button functional.
-        var button = document.getElementById("image-display-close-button");
-        button.addEventListener("click", this.hide.bind(this));
+        // Make the close buttons functional.
+        var buttons =
+            document.getElementsByClassName("image-display-close-button");
+        [].forEach.call(buttons, function (button, i) {
+            button.addEventListener("click", function () {
+
+                console.log(i);
+
+                this.hide(i);
+            }.bind(this));
+        }.bind(this));
 
         initializeImages();
     };
@@ -133,20 +144,24 @@ ImageDisplay.Viewer = function ()
     /**
      * Show the image viewer.
      * @function
+     *
+     * @param {number} index - The index of the image-display to show.
      */
-    this.show = function ()
+    this.show = function (index)
     {
-        $(div).removeClass("hidden");
-        div.focus();
+        $(divs[index]).removeClass("hidden");
+        divs[index].focus();
     };
 
     /**
      * Hide the image viewer.
      * @function
+     *
+     * @param {number} index - The index of the image-display to hide.
      */
-    this.hide = function ()
+    this.hide = function (index)
     {
-        $(div).addClass("hidden");
+        $(divs[index]).addClass("hidden");
 
         if (currentImage !== null)
             images[currentImage].hide();

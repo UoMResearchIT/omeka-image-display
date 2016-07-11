@@ -94,19 +94,17 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     }
 
     /**
-     * Find the index among the image's siblings.
+     * Find the index among the images on the page.
      * @private
      *
      * @return {number} - The image index.
      */
     function getIndex ()
     {
-        var cur = galleryImage;
-        var index = -1;
-        while ((cur = cur.previousSibling) != null)
-            index++;
+        var images =
+            document.getElementsByClassName("layout-image-display-image");
 
-        return index;
+        return [].indexOf.call(images, viewerImage);
     }
 
     /**
@@ -263,7 +261,14 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
 
         // Make the galleryImage open the viewer when clicked.
         galleryImage.addEventListener("click", function () {
-            ImageDisplay.openViewer(index);
+            // First we need to find the index of the display we want
+            // to show.
+            var divs = document.getElementsByClassName("image-display");
+            var display = viewerImage.parentElement.parentElement.parentElement;
+
+            var divIndex = [].indexOf.call(divs, display);
+
+            ImageDisplay.openViewer(divIndex, index);
         }, false);
 
         // Initialize the zoom event listeners on the image's
@@ -320,7 +325,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
 /**
  * The speed with which scrolling zooms the image.
  */
-ImageDisplay.Image.ZOOM_SPEED = 1;
+ImageDisplay.Image.ZOOM_SPEED = 10;
 
 /**
  * The minimum zoom level.

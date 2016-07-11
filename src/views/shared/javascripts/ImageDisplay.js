@@ -26,11 +26,12 @@ if (typeof ImageDisplay === "undefined")
          * Open the image viewer with the image with index index.
          * @function
          *
+         * @param {number} divIndex - The index of the image-viewer to display.
          * @param {number} index - The index of the image to display.
          */
-        openViewer: function (index)
+        openViewer: function (divIndex, index)
         {
-            this.viewer.show();
+            this.viewer.show(divIndex);
             this.viewer.showImage(index);
         }
     };
