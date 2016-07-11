@@ -1,5 +1,5 @@
-image-viewer.css: image-viewer.styl
-	stylus < $^ > $@
+image-viewer.css: image-viewer.styl helpers.styl theme-fixes.styl
+	stylus < image-viewer.styl > $@
 
 
 .PHONY: clean

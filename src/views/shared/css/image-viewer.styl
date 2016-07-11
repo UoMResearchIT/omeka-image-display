@@ -5,47 +5,12 @@
  * @author Tristan Maat
  */
 
-/**
- * Cross-browser support helper functions/mixins
- */
-display-flex()
-  display -webkit-box
-  display -ms-flexbox
-  display -webkit-flex
-  display flex
-
-flex()
-  -webkit-box-flex arguments
-  // If the browser is old this at least avoids collapsing
-  width 50%
-  -webkit-flex arguments
-  -ms-flex arguments
-  flex arguments
-
-box-shadow()
-  -webkit-box-shadow arguments
-  -moz-box-shadow arguments
-  box-shadow arguments
-
-appearance()
-  -webkit-appearance arguments
-  -moz-appearance arguments
-  appearance arguments
-
-transition()
-  -webkit-transition arguments
-  -moz-transition arguments
-  -ms-transition arguments
-  -o-transition arguments
-  transition arguments
+@import "helpers"
+@import "theme-fixes"
 
 /**
  * Styles
  */
-// Force all stacking contexts to be lower than our stacking context.
-*:not(.image-display)
-  z-index -1
-
 .layout-image-display-file
 .layout-image-display-gallery
   .image-display
