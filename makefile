@@ -17,6 +17,7 @@ css_dir = views/shared/css
 image_files = ajax-loader.gif
 image_dir = views/shared/images
 
+additional_files = views/admin/config.php
 
 ImageDisplay: css javascript
 	# Create and copy the directory of each layout
@@ -25,6 +26,11 @@ ImageDisplay: css javascript
 		for file in $(layout_files); do \
 			cp "src/$$layout/$$file" "$@/$$layout/$$file"; \
 		done; \
+	done
+
+	for file in $(additional_files); do \
+		mkdir -p "$@/`dirname $$file`"; \
+		cp "src/$$file" "$@/`dirname $$file`"; \
 	done
 
 	mkdir -p $@/$(javascript_dir)
