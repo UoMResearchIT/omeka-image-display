@@ -73,6 +73,18 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     /**
+     * Display the viewer on public item pages.
+     *
+     * @return null
+     */
+    public function hookPublicItemsShow()
+    {
+        if (get_option("image_display_public_append_to_items_show")) {
+            $item = get_current_record("item");
+        }
+    }
+
+    /**
      * Respond to the configuration form.
      *
      * @param mixed $settings The settings as set by the configuration form.
