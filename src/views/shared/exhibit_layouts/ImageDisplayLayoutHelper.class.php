@@ -1,36 +1,46 @@
 <?php
 /**
- * ImageDisplayLayoutHelpers.php
- *
  * Helper functions to create an image display.
  *
- * @author Tristan Daniel Maat <tm@tlater.net>
+ * PHP version 5
+ *
  * @package Omeka\Plugins\ImageDisplayPlugin
+ * @author  Tristan Daniel Maat <tm@tlater.net>
  */
-class ImageDisplayLayoutHelper {
+
+/**
+ * The helper function container class.
+ *
+ * @package Omeka\Plugins\ImageDisplayPlugin
+ * @author  Tristan Daniel Maat <tm@tlater.net>
+ */
+class ImageDisplayLayoutHelper
+{
     /**
      * Returns a string that contains HTML markup for all files in the
      * attachments variable. The exact tags can be changed through the
      * provided parameters.
      *
-     * @param \ExhibitBlockAttachment[] $attachments
-     *        The exhibit "attachments" selected by the user to
-     *        generate the images from.
-     *
-     * @param string[] $properties Any additional properties to add to
-     *                             the img tag.
-     *
-     * @param string $imageType The type of the images. Can be either
-     *                          fullsize, thumbnail or square_thumbnail.
-     *
-     * @param boolean $link Whether the image should link to its
-     *                      corresponding item page.
+     * @param \ExhibitBlockAttachment[] $attachments The exhibit "attachments"
+     *                                               selected by the user to
+     *                                               generate the images from.
+     * @param string[]                  $properties  Any additional properties
+     *                                               to add to the img tag.
+     * @param string                    $imageType   The type of the images.
+     *                                               Can be either fullsize,
+     *                                               thumbnail or
+     *                                               square_thumbnail.
+     * @param boolean                   $link        Whether the image should
+     *                                               link to its corresponding
+     *                                               item page. corresponding
+     *                                               item page.
      *
      * @return string An HTML string as described.
      */
-    public function getImages ($attachments, $properties=array(),
-                               $imageType="fullsize", $link=false)
-    {
+    public function getImages($attachments, $properties=array(),
+                              $imageType="fullsize", $link=false
+    ) {
+
         $string = "";
 
         foreach ($attachments as $attachment) {
@@ -40,10 +50,11 @@ class ImageDisplayLayoutHelper {
             $image_tag = item_image($imageType, $properties, 0, $item);
 
             // If we should link, add a link.
-            if ($link)
+            if ($link) {
                 $string .= link_to_item($image_tag, array(), "show", $item);
-            else
+            } else {
                 $string .= $image_tag;
+            }
         }
 
         return $string;
@@ -55,22 +66,13 @@ class ImageDisplayLayoutHelper {
      * image and a data-src tag that can be used to defer image load.
      *
      * @param string $markup The string to transform.
+     *
+     * @return string An HTML string as described.
      */
-    public function makeImagesDeferred ($markup)
+    public function makeImagesDeferred($markup)
     {
         $images = new DOMDocument;
         $images->loadHTML($markup);
-
-    //     $long = "";
-
-    //     $view = get_view();
-    //     $paths = $view->getAssetPaths();
-    //     foreach ($paths as $path) {
-    //         list($physical, $web) = $path;
-    //         $long .= '    ' . $web . '/';
-    //     }
-
-    // throw new InvalidArgumentException( __("Could not find file %s!", $long) );
 
         foreach ($images->getElementsByTagName("img") as $image) {
             $image->setAttribute("data-src", $image->getAttribute("src"));
@@ -84,15 +86,17 @@ class ImageDisplayLayoutHelper {
      * Return a string that contains markup to describe an image's
      * metadata.
      *
-     * @param \ExhibitBlockAttachment[] $attachments
-     *        The exhibit "attachments" selected by the user to
-     *        generate the images from.
+     * @param \ExhibitBlockAttachment[] $attachments The exhibit "attachments"
+     *                                               selected by the user to
+     *                                               generate the images from.
+     * @param string                    $text        The description of the
+     *                                               exhibit block as entered
+     *                                               by the user and passed to
+     *                                               layout.php.
      *
-     * @param string $text
-     *        The description of the exhibit block as entered by the
-     *        user and passed to layout.php.
+     * @return string An HTML string as described.
      */
-    public function getImageMetadata ($attachments, $text)
+    public function getImageMetadata($attachments, $text)
     {
         $markup = new DOMDocument;
         $item_link = new DOMDocument;
@@ -103,10 +107,14 @@ class ImageDisplayLayoutHelper {
             $markup->loadHTML(all_element_texts($attachment->getItem()));
 
             // Get a link to the item page.
-            $item_link->loadHTML(link_to_item("Go to image page",
-                                              array("class" => "item-link"),
-                                              "show",
-                                              $attachment->getItem()));
+            $item_link->loadHTML(
+                link_to_item(
+                    "Go to image page",
+                    array("class" => "item-link"),
+                    "show",
+                    $attachment->getItem()
+                )
+            );
             $node = $item_link->getElementsByTagName("a")->item(0);
             $node = $markup->importNode($node, true);
 
