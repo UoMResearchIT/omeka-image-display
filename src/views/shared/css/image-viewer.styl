@@ -42,6 +42,10 @@ transition()
 /**
  * Styles
  */
+// Force all stacking contexts to be lower than our stacking context.
+*:not(.image-display)
+  z-index -1
+
 .layout-image-display-file
 .layout-image-display-gallery
   .image-display
@@ -55,7 +59,9 @@ transition()
 
     height 100%
     width 100%
-    z-index 1
+    // Absurdly high because apparently omeka theme designers like
+    // using this for no reason at all.
+    z-index 2147483645
 
     outline none
 
@@ -67,6 +73,7 @@ transition()
 
     .image-display-body
       height 100%
+      z-index inherit
 
     #display-left
       flex 4 0
@@ -78,9 +85,10 @@ transition()
 
         background rgba(0, 0, 0, .5)
         height 100%
+        z-index 2147483646
 
     #display-right
-      z-index 1
+      z-index 2147483646
       flex 1 0
 
       background white
@@ -101,6 +109,7 @@ transition()
         font-size 25px
 
         // Set box location and properties
+        z-index 2147483647
         margin 5px 5px 0 0
         float right
         padding 0
@@ -118,6 +127,7 @@ transition()
           opacity .7
 
       #description-container
+        z-index 2147483646
         width 100%
         height 100%
 
@@ -129,6 +139,7 @@ transition()
         padding-top 0
 
         .item-link
+          z-index 2147483646
           text-align center
           display table-footer-group
 
@@ -136,6 +147,7 @@ transition()
         // display none at first, and will be set to .current when it
         // should be displayed.
         .element-set
+          z-index 2147483646
           display none
 
           &.current
@@ -163,6 +175,7 @@ transition()
             // All other elements are metadata. Create a table with a
             // tag - description layout.
             .element
+              z-index 2147483646
               display table
               width 100%
 
@@ -180,6 +193,7 @@ transition()
     // javascript. We want them to fill the container in one
     // direction, hence the max-height and max-width.
     .layout-image-display-image
+      z-index 2147483646
       display none
       max-width 100%
       max-height 100%
