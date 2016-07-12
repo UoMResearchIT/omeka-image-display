@@ -141,8 +141,8 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
 
         // Calculate the movement speed (different between firefox and
         // others).
-        var movement = event.deltaX;
-        if (!event.deltaX)
+        var movement = event.deltaY;
+        if (!event.deltaY)
             movement = event.wheelDelta / 120 || -event.detail;
 
         // Calculate the new zoom level and cap it to the set
