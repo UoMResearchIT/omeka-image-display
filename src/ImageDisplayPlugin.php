@@ -68,6 +68,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
             || array_key_exists("image-display-file", $args["layouts"])
         ) {
             queue_js_file("viewer");
+            queue_js_file("node_modules/object-fit-images/dist/ofi.browser");
             queue_css_file("image-viewer");
         }
     }
