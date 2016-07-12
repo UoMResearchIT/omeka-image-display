@@ -325,7 +325,7 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
 /**
  * The speed with which scrolling zooms the image.
  */
-ImageDisplay.Image.ZOOM_SPEED = 10;
+ImageDisplay.Image.ZOOM_SPEED = 1;
 
 /**
  * The minimum zoom level.
