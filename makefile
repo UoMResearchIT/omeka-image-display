@@ -1,7 +1,7 @@
 src_files = ImageDisplayPlugin.php plugin.ini
 
-layout_lib_files =  ImageDisplayLayoutHelper.class.php
-layout_lib_dir = views/shared/exhibit_layouts
+lib_files =  ImageDisplayLayoutHelper.class.php
+lib_dir = views
 
 # The directories and files for individual layouts
 layout_names = image-display-gallery image-display-file
@@ -16,6 +16,9 @@ css_dir = views/shared/css
 
 image_files = ajax-loader.gif
 image_dir = views/shared/images
+
+public_view_files = image-display-show.php
+public_view_dir = views/public/common
 
 additional_files = views/admin/config.php
 
@@ -33,18 +36,19 @@ ImageDisplay: css javascript
 		cp "src/$$file" "$@/`dirname $$file`"; \
 	done
 
+	mkdir -p $@/$(public_view_dir)
 	mkdir -p $@/$(javascript_dir)
 	mkdir -p $@/$(layout_lib_dir)
 	mkdir -p $@/$(image_dir)
 	mkdir -p $@/$(css_dir)
 
+	cp $(addprefix src/$(public_view_dir)/,$(public_view_files)) $@/$(public_view_dir)
 	cp $(addprefix src/$(javascript_dir)/,$(javascript_files)) $@/$(javascript_dir)
-	cp $(addprefix src/$(layout_lib_dir)/,$(layout_lib_files)) $@/$(layout_lib_dir)
 	cp $(addprefix src/$(image_dir)/,$(image_files)) $@/$(image_dir)
+	cp $(addprefix src/$(lib_dir)/,$(lib_files)) $@/$(lib_dir)
 	cp $(addprefix src/$(css_dir)/,$(css_files)) $@/$(css_dir)
 	cp $(addprefix src/,$(src_files)) $@
 
-	# Install the dependency for IE (any version)
 	cp src/$(javascript_dir)/object-fit-images/dist/ofi.browser.js $@/$(javascript_dir)
 
 .PHONY: css javascript clean
