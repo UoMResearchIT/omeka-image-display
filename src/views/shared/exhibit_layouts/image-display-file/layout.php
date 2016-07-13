@@ -1,5 +1,6 @@
 <?php
-require_once(dirname(__DIR__) . "/ImageDisplayLayoutHelper.class.php");
+$VIEWS_DIR = dirname(dirname(dirname(__DIR__)));
+require_once($VIEWS_DIR . "/ImageDisplayLayoutHelper.class.php");
 
 /**
  * layout.php
@@ -37,7 +38,13 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
             <span aria-hidden="true">&times;</span>
         </button>
         <div id="description-container" class="image-display-container">
-            <?php echo $layoutHelper->getImageMetadata($attachments, $text) ?>
+            <?php
+            $items = array_map(function($attachment) {
+                return $attachment->getItem();
+            }, $attachments);
+
+            echo $layoutHelper->getImageMetadata($items, $text);
+            ?>
         </div>
     </div>
 </div>

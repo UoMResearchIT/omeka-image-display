@@ -86,25 +86,24 @@ class ImageDisplayLayoutHelper
      * Return a string that contains markup to describe an image's
      * metadata.
      *
-     * @param \ExhibitBlockAttachment[] $attachments The exhibit "attachments"
-     *                                               selected by the user to
-     *                                               generate the images from.
-     * @param string                    $text        The description of the
-     *                                               exhibit block as entered
-     *                                               by the user and passed to
-     *                                               layout.php.
+     * @param \Item[] $items The exhibit items selected by the user
+     *                       to generate the images from.
+
+     * @param string  $text  The description of the exhibit block
+     *                       as entered by the user and passed to
+     *                       layout.php.
      *
      * @return string An HTML string as described.
      */
-    public function getImageMetadata($attachments, $text)
+    public function getImageMetadata($items, $text)
     {
         $markup = new DOMDocument;
         $item_link = new DOMDocument;
         $text .= "</br>";
 
-        foreach ($attachments as $attachment) {
+        foreach ($items as $item) {
             // Generate the metadata markup.
-            $markup->loadHTML(all_element_texts($attachment->getItem()));
+            $markup->loadHTML(all_element_texts($item));
 
             // Get a link to the item page.
             $item_link->loadHTML(
@@ -112,7 +111,7 @@ class ImageDisplayLayoutHelper
                     "Go to image page",
                     array("class" => "item-link"),
                     "show",
-                    $attachment->getItem()
+                    $item
                 )
             );
             $node = $item_link->getElementsByTagName("a")->item(0);
