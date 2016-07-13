@@ -1,6 +1,5 @@
 <?php
-$VIEWS_DIR = dirname(dirname(dirname(__DIR__)));
-require_once($VIEWS_DIR . "/ImageDisplayLayoutHelper.class.php");
+require_once("ImageDisplayLayoutHelper.class.php");
 
 /**
  * layout.php

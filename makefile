@@ -1,7 +1,7 @@
 src_files = ImageDisplayPlugin.php plugin.ini
 
 lib_files =  ImageDisplayLayoutHelper.class.php
-lib_dir = views
+lib_dir = libraries
 
 # The directories and files for individual layouts
 layout_names = image-display-gallery image-display-file
@@ -38,7 +38,7 @@ ImageDisplay: css javascript
 
 	mkdir -p $@/$(public_view_dir)
 	mkdir -p $@/$(javascript_dir)
-	mkdir -p $@/$(layout_lib_dir)
+	mkdir -p $@/$(lib_dir)
 	mkdir -p $@/$(image_dir)
 	mkdir -p $@/$(css_dir)
 
