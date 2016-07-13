@@ -45,7 +45,7 @@ ImageDisplay: css javascript
 	cp $(addprefix src/,$(src_files)) $@
 
 	# Install the dependency for IE (any version)
-	cd $@/$(javascript_dir) && npm install --save object-fit-images
+	cp src/$(javascript_dir)/object-fit-images/dist/ofi.browser.js $@/$(javascript_dir)
 
 .PHONY: css javascript clean
 
