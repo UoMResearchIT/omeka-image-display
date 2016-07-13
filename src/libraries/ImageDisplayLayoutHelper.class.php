@@ -86,41 +86,47 @@ class ImageDisplayLayoutHelper
      * Return a string that contains markup to describe an image's
      * metadata.
      *
-     * @param \Item[] $items The exhibit items selected by the user
-     *                       to generate the images from.
-
-     * @param string  $text  The description of the exhibit block
-     *                       as entered by the user and passed to
-     *                       layout.php.
+     * @param \Item[] $items    The exhibit items selected by the
+     *                          user to generate the images from.
+     * @param string  $text     The description of the exhibit
+     *                          block as entered by the user and
+     *                          passed to layout.php.
+     * @param boolean $itemLink Whether a link to the item page
+     *                          should be shown.
      *
      * @return string An HTML string as described.
      */
-    public function getImageMetadata($items, $text)
+    public function getImageMetadata($items, $text, $itemLink=true)
     {
         $markup = new DOMDocument;
         $item_link = new DOMDocument;
         $text .= "</br>";
 
         foreach ($items as $item) {
-            // Generate the metadata markup.
-            $markup->loadHTML(all_element_texts($item));
+            $metadata = all_element_texts($item);
 
-            // Get a link to the item page.
-            $item_link->loadHTML(
-                link_to_item(
-                    "Go to image page",
-                    array("class" => "item-link"),
-                    "show",
-                    $item
-                )
-            );
-            $node = $item_link->getElementsByTagName("a")->item(0);
-            $node = $markup->importNode($node, true);
+            if ($itemLink) {
+                // Generate the metadata markup.
+                $markup->loadHTML($metadata);
 
-            // Append the link to the markup and store the div.
-            $root = $markup->getElementsByTagName("div")->item(0);
-            $root->appendChild($node);
-            $text .= $markup->saveHTML();
+                // Get a link to the item page.
+                $item_link->loadHTML(
+                    link_to_item(
+                        "Go to item page",
+                        array("class" => "item-link"),
+                        "show",
+                        $item
+                    )
+                );
+                $node = $item_link->getElementsByTagName("a")->item(0);
+                $node = $markup->importNode($node, true);
+
+                // Append the link to the markup and store the div.
+                $root = $markup->getElementsByTagName("div")->item(0);
+                $root->appendChild($node);
+                $text .= $markup->saveHTML();
+            } else
+                $text .= $metadata;
         }
 
         return $text;

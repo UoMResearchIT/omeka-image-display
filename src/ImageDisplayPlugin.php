@@ -22,6 +22,8 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
         "config",
         "config_form",
         "initialize",
+        "public_head",
+        "public_items_show",
         "exhibit_builder_page_head"
     );
 
@@ -56,9 +58,9 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     /**
-     * Add the viewer script.
+     * Add the viewer script to exhibit pages.
      *
-     * @param mixed $args The args as defined by omeka.
+     * @param mixed $args - The args as defined by omeka.
      *
      * @return null
      */
@@ -74,6 +76,22 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     /**
+     * Add the viewer script to item pages.
+     *
+     * @param mixed args The args as defined by omeka.
+     *
+     * @return null
+     */
+    public function hookPublicHead($args)
+    {
+        if (get_option("image_display_public_append_to_items_show")) {
+            queue_js_file("viewer");
+            queue_js_file("ofi.browser");
+            queue_css_file("image-viewer");
+        }
+    }
+
+    /**
      * Display the viewer on public item pages.
      *
      * @return null
@@ -82,6 +100,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     {
         if (get_option("image_display_public_append_to_items_show")) {
             $item = get_current_record("item");
+            echo common("image-display-show", array("item" => $item));
         }
     }
 

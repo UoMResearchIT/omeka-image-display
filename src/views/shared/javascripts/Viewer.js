@@ -77,7 +77,7 @@ ImageDisplay.Viewer = function ()
         var viewerImage =
             document.getElementsByClassName("layout-image-display-image")[i];
         var metadata =
-            document.getElementsByClassName("element-set")[i];
+            document.querySelectorAll(".image-display-container .element-set")[i];
 
         return {
             "viewerImage": viewerImage,
@@ -92,8 +92,9 @@ ImageDisplay.Viewer = function ()
      */
     function initializeImages ()
     {
-        var imageClass = "layout-image-display-container-image";
-        var containerImages = document.getElementsByClassName(imageClass);
+        var imageQuery = ".layout-image-display-container-image, " +
+            "#item-images .item-file .download-file";
+        var containerImages = document.querySelectorAll(imageQuery);
 
         // Fill the images array. For each gallery image
         [].forEach.call(containerImages, function (containerImage, i) {

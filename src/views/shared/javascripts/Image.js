@@ -269,6 +269,11 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
             var divIndex = [].indexOf.call(divs, display);
 
             ImageDisplay.openViewer(divIndex, index);
+
+
+            if (event.preventDefault)
+                event.preventDefault();
+            return false;
         }, false);
 
         // Initialize the zoom event listeners on the image's
