@@ -11,6 +11,9 @@ required, with executables named `stylus` and `closure` in the PATH
 respectively (the google closure compiler can be wrapped inside a bash
 script that executes the jar and passes all arguments).
 
+Ensure you either clone the project using `git clone --recursive` or
+run `git submodule init && git submodule update` after cloning.
+
 Then, simply execute `make` in the root directory of the project.
 
 ## Installation
