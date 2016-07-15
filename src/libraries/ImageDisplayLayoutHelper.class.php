@@ -38,13 +38,18 @@ class ImageDisplayLayoutHelper
      * @return string An HTML string as described.
      */
     public function getImages($attachments, $properties=array(),
-                              $imageType="fullsize", $link=false
+                              $imageType="fullsize", $link=false, $alt=false
     ) {
 
         $string = "";
 
         foreach ($attachments as $attachment) {
             $item = $attachment->getItem();
+
+            // Add the item title as an alt text if required.
+            if ($alt) {
+                $properties[] = metadata($item, array("Dublin Core", "Title"));
+            }
 
             // Generate the requested HTML tag for the image.
             $image_tag = item_image($imageType, $properties, 0, $item);
@@ -125,8 +130,9 @@ class ImageDisplayLayoutHelper
                 $root = $markup->getElementsByTagName("div")->item(0);
                 $root->appendChild($node);
                 $text .= $markup->saveHTML();
-            } else
+            } else {
                 $text .= $metadata;
+            }
         }
 
         return $text;

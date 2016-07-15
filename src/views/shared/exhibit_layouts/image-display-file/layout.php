@@ -17,7 +17,9 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
     echo $layoutHelper->getImages(
         $attachments,
         array("class" => "layout-image-display-container-image"),
-        "thumbnail"
+        "thumbnail",
+        false,
+        true
     );
     ?>
 </div>
