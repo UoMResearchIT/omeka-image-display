@@ -1,23 +1,24 @@
 <?php
-require_once("ImageDisplayLayoutHelper.class.php");
-
 /**
- * layout.php
- *
  * An exhibit layout that displays images with navigation controls.
  *
- * @author Tristan Daniel Maat <tm@tlater.net>
+ * PHP version 5
+ *
  * @package Omeka\Plugins\ImageDisplayPlugin
+ * @author  Tristan Daniel Maat <tm@tlater.net>
  */
 
+require_once "ImageDisplayLayoutHelper.class.php";
 $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 ?>
 
 <div class="container">
     <?php
-    echo $layoutHelper->getImages($attachments,
-                                  array("class" => "layout-image-display-container-image"),
-                                  "thumbnail");
+    echo $layoutHelper->getImages(
+        $attachments,
+        array("class" => "layout-image-display-container-image"),
+        "thumbnail"
+    );
     ?>
 </div>
 
@@ -25,9 +26,11 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
     <div id="display-left" class="image-display-body">
         <div id="image-container" class="image-display-container">
             <?php
-            $images = $layoutHelper->getImages($attachments,
-                                               array("class" => "layout-image-display-image"),
-                                               "fullsize");
+            $images = $layoutHelper->getImages(
+                $attachments,
+                array("class" => "layout-image-display-image"),
+                "fullsize"
+            );
             echo $layoutHelper->makeImagesDeferred($images);
             ?>
         </div>
@@ -38,9 +41,11 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
         </button>
         <div id="description-container" class="image-display-container">
             <?php
-            $items = array_map(function($attachment) {
-                return $attachment->getItem();
-            }, $attachments);
+            $items = array_map(
+                function ($attachment) {
+                    return $attachment->getItem();
+                }, $attachments
+            );
 
             echo $layoutHelper->getImageMetadata($items, $text);
             ?>
@@ -51,8 +56,10 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 <noscript>
     <style>.image-display-js { display: none; }</style>
     <?php
-    /* echo $layoutHelper->getNoscript($attachments,
-     *                                 array("class" => "layout-image-display-nojs-image"),
-     *                                 "thumbnail");*/
+    /* echo $layoutHelper->getNoscript(
+       $attachments,
+       array("class" => "layout-image-display-nojs-image"),
+       "thumbnail");
+     */
     ?>
 </noscript>
