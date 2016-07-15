@@ -44,6 +44,7 @@ class ImageDisplayLayoutHelper
 
         foreach ($attachments as $attachment) {
             $item = $attachment->getItem();
+            $file = $attachment->getFile();
 
             // Add the item title as an alt text if required.
             if ($alt) {
@@ -51,7 +52,12 @@ class ImageDisplayLayoutHelper
             }
 
             // Generate the requested HTML tag for the image.
-            $image_tag = item_image($imageType, $properties, 0, $item);
+            $props = array(
+                "imageSize" => $imageType,
+                "imgAttributes" => $properties,
+                "linkToFile" => false
+            );
+            $image_tag = file_markup($file, $props, null);
 
             // If we should link, add a link.
             if ($link) {
