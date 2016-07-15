@@ -86,6 +86,15 @@ class ImageDisplayLayoutHelper
         return $images->saveHTML();
     }
 
+    /**
+     * Append the given string of HTML markup to an HTML document node.
+     *
+     * @param DOMNode $parent The DOMNode to append the element to.
+     * @param string  $markup The HTML markup that should be appended
+     *                        to the parent.
+     *
+     * @return null
+     */
     private function _appendNode(DOMNode $parent, $markup)
     {
         $temp_dom = new DOMDocument;
