@@ -49,7 +49,13 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
                 }, $attachments
             );
 
-            echo $layoutHelper->getImageMetadata($items, $text);
+            $captions = array_map(
+                function ($attachment) {
+                    return $attachment->caption;
+                }, $attachments
+            );
+
+            echo $layoutHelper->getImageMetadata($items, $captions);
             ?>
         </div>
     </div>

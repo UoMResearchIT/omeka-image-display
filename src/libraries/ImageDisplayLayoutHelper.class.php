@@ -40,7 +40,6 @@ class ImageDisplayLayoutHelper
     public function getImages($attachments, $properties=array(),
                               $imageType="fullsize", $link=false, $alt=false
     ) {
-
         $string = "";
 
         foreach ($attachments as $attachment) {
@@ -87,52 +86,67 @@ class ImageDisplayLayoutHelper
         return $images->saveHTML();
     }
 
+    private function _appendNode(DOMNode $parent, $markup)
+    {
+        $temp_dom = new DOMDocument;
+
+        echo "<!--" . $markup . "-->";
+
+        $temp_dom->loadHTML($markup);
+
+        $nodes = $temp_dom->getElementsByTagName("body")->item(0)->childNodes;
+
+        foreach ($nodes as $node) {
+            $node = $parent->ownerDocument->importNode($node, true);
+            $parent->appendChild($node);
+        }
+    }
+
     /**
      * Return a string that contains markup to describe an image's
      * metadata.
      *
      * @param \Item[] $items    The exhibit items selected by the
      *                          user to generate the images from.
-     * @param string  $text     The description of the exhibit
-     *                          block as entered by the user and
-     *                          passed to layout.php.
+     * @param string  $captions The captions of the images in the same
+     *                          order.
      * @param boolean $itemLink Whether a link to the item page
      *                          should be shown.
      *
      * @return string An HTML string as described.
      */
-    public function getImageMetadata($items, $text, $itemLink=true)
+    public function getImageMetadata($items, $captions, $itemLink=true)
     {
         $markup = new DOMDocument;
-        $item_link = new DOMDocument;
-        $text .= "</br>";
+        $temp_dom = new DOMDocument;
 
-        foreach ($items as $item) {
+        $text = "";
+
+        foreach ($items as $i => $item) {
+            // Generate the metadata markup.
             $metadata = all_element_texts($item);
+            $markup->loadHTML($metadata);
+
+            $root = $markup->getElementsByTagName("div")->item(0);
+
+            $this->_appendNode(
+                $root, '<div class="image-caption">' .
+                $captions[$i] .
+                "</div>"
+            );
 
             if ($itemLink) {
-                // Generate the metadata markup.
-                $markup->loadHTML($metadata);
-
-                // Get a link to the item page.
-                $item_link->loadHTML(
-                    link_to_item(
-                        "Go to item page",
-                        array("class" => "item-link"),
-                        "show",
-                        $item
-                    )
+                $link_markup = link_to_item(
+                    "Go to item page",
+                    array("class" => "item-link"),
+                    "show",
+                    $item
                 );
-                $node = $item_link->getElementsByTagName("a")->item(0);
-                $node = $markup->importNode($node, true);
 
-                // Append the link to the markup and store the div.
-                $root = $markup->getElementsByTagName("div")->item(0);
-                $root->appendChild($node);
-                $text .= $markup->saveHTML();
-            } else {
-                $text .= $metadata;
+                $this->_appendNode($root, $link_markup);
             }
+
+            $text .= $markup->saveHTML();
         }
 
         return $text;
