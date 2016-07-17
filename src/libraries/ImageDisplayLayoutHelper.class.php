@@ -105,8 +105,6 @@ class ImageDisplayLayoutHelper
     {
         $temp_dom = new DOMDocument;
 
-        echo "<!--" . $markup . "-->";
-
         $temp_dom->loadHTML($markup);
 
         $nodes = $temp_dom->getElementsByTagName("body")->item(0)->childNodes;
@@ -139,10 +137,14 @@ class ImageDisplayLayoutHelper
 
         foreach ($items as $i => $item) {
             // Generate the metadata markup.
-            $metadata = all_element_texts($item);
+            $metadata = '<div class="image-metadata">' .
+                      all_element_texts($item) .
+                      '</div>';
+
             $markup->loadHTML($metadata);
 
-            $root = $markup->getElementsByTagName("div")->item(0);
+            $root = $markup->getElementsByTagName("body")->item(0)
+                  ->childNodes->item(0);
 
             $this->_appendNode(
                 $root, '<div class="image-caption">' .

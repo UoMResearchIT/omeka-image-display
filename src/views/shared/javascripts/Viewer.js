@@ -77,7 +77,8 @@ ImageDisplay.Viewer = function ()
         var viewerImage =
             document.getElementsByClassName("layout-image-display-image")[i];
         var metadata =
-            document.querySelectorAll(".image-display-container .element-set")[i];
+            document.querySelectorAll(".image-display-container " +
+                                      ".image-metadata")[i];
 
         return {
             "viewerImage": viewerImage,

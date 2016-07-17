@@ -112,7 +112,7 @@
         // Each image has an element set, which needs to be set to
         // display none at first, and will be set to .current when it
         // should be displayed.
-        .element-set
+        .image-metadata
           z-index 2147483646
           display none
 
@@ -121,39 +121,43 @@
             height 100%
             width 100%
 
-            // The first element is always the title. Hide the "Title"
-            // tag, and make the title pretty.
-            .element:first-child
+            .image-caption
+            .element-set
               display block
-              font-size 20px
-              margin-top 20px
-              line-height 1.1
-              font-weight bold
-              margin-bottom 15px
 
-              h3
-                display none
-
-              .element-text
+              // The dublin-core title. Hide the "Title" tag, and make
+              // the title pretty.
+              #dublin-core-title
                 display block
-                text-align center
+                font-size 20px
+                margin-top 20px
+                line-height 1.1
+                font-weight bold
+                margin-bottom 15px
 
-            // All other elements are metadata. Create a table with a
-            // tag - description layout.
-            .element
-              z-index 2147483646
-              display table
-              width 100%
+                h3
+                  display none
 
-              .element-text
-              h3
-                display table-cell
+                .element-text
+                  display block
+                  text-align center
 
-                font-size inherit
-                margin 0
+              // All other elements are metadata. Create a table with a
+              // tag - description layout.
+              .element
+                z-index 2147483646
+                display table
+                width 100%
 
-              .element-text
-                text-align right
+                .element-text
+                h3
+                  display table-cell
+
+                  font-size inherit
+                  margin 0
+
+                .element-text
+                  text-align right
 
     // Images are hidden at first, and made visible through
     // javascript. We want them to fill the container in one
