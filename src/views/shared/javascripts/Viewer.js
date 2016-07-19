@@ -94,7 +94,7 @@ ImageDisplay.Viewer = function ()
     function initializeImages ()
     {
         var imageQuery = ".layout-image-display-container-image, " +
-            "#item-images .item-file .download-file";
+            ".item-file.image-jpeg .download-file";
         var containerImages = document.querySelectorAll(imageQuery);
 
         // Fill the images array. For each gallery image
