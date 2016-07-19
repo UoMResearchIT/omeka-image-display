@@ -146,11 +146,13 @@ class ImageDisplayLayoutHelper
             $root = $markup->getElementsByTagName("body")->item(0)
                   ->childNodes->item(0);
 
-            $this->_appendNode(
-                $root, '<div class="image-caption">' .
-                $captions[$i] .
-                "</div>"
-            );
+            if (!empty($captions[$i])) {
+                $this->_appendNode(
+                    $root, '<div class="image-caption">' .
+                    $captions[$i] .
+                    "</div>"
+                );
+            }
 
             if ($itemLink) {
                 $link_markup = link_to_item(
