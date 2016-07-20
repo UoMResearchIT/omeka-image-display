@@ -102,6 +102,9 @@ ImageDisplay.Viewer = function ()
             // find the corresponding viewer image.
             var image = findViewerImage(i);
 
+            // Remove the link from item divs.
+            $(containerImage).removeAttr("href");
+
             // Create an Image object for the two, add it to the
             // images array, and finally initialize the object.
             images.push(new ImageDisplay.Image(containerImage,
