@@ -1,3 +1,15 @@
+<?php
+/**
+ * The configuration page.
+ *
+ * PHP version 5
+ *
+ * @package Omeka\Plugins\ImageDisplayPlugin
+ * @author  Tristan Daniel Maat <tm@tlater.net>
+ * @license GPL version 3
+ */
+?>
+
 <div class="field">
     <div class="two columns alpha">
         <?php

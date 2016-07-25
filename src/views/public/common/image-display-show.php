@@ -1,15 +1,13 @@
 <?php
-require_once("ImageDisplayLayoutHelper.class.php");
-
 /**
- * layout.php
- *
  * An exhibit layout that displays images with navigation controls.
  *
- * @author Tristan Daniel Maat <tm@tlater.net>
+ * @author  Tristan Daniel Maat <tm@tlater.net>
  * @package Omeka\Plugins\ImageDisplayPlugin
+ * @license GPL version 3
  */
 
+require_once "ImageDisplayLayoutHelper.class.php";
 $layoutHelper = new ImageDisplayLayoutHelper;
 ?>
 
@@ -20,10 +18,12 @@ $layoutHelper = new ImageDisplayLayoutHelper;
                 <?php
                 $images = "";
                 for ($i = 0; $i < $item->fileCount(); $i++) {
-                    $images .= item_image("fullsize",
-                                          array("class" => "layout-image-display-image"),
-                                          $i,
-                                          $item);
+                    $images .= item_image(
+                        "fullsize",
+                        array("class" => "layout-image-display-image"),
+                        $i,
+                        $item
+                    );
                 }
 
                 echo $layoutHelper->makeImagesDeferred($images);
@@ -36,9 +36,11 @@ $layoutHelper = new ImageDisplayLayoutHelper;
                 <span aria-hidden="true">&times;</span>
             </button>
             <div id="description-container" class="image-display-container">
-                <?php echo $layoutHelper->getImageMetadata(array($item),
-                                                           "",
-                                                           false); ?>
+                <?php echo $layoutHelper->getImageMetadata(
+                    array($item),
+                    "",
+                    false
+                ); ?>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@
  * @package Omeka\Plugins\ImageDisplayPlugin
  * @author  Tristan Daniel Maat <tm@tlater.net>
  * @see     ImageDisplayPlugin
+ * @license GPL version 3
  */
 
 /**

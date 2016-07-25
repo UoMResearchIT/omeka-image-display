@@ -4,6 +4,22 @@
  * and their descriptions.
  *
  * @author Tristan Daniel Maat <tm@tlater.net>
+ *
+ * @license
+ * Copyright (C) 2016  Tristan Daniel Maat
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -117,8 +133,14 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     {
         var download = $("<img style=\"display:none\" />");
 
+        // Make the loading image small
+        $(viewerImage).css("width", "5%");
+        $(viewerImage).css("height", "5%");
+
         download.load(function () {
             $(viewerImage).attr("src", $(this).attr("src"));
+            $(viewerImage).css("width", "100%");
+            $(viewerImage).css("height", "100%");
         });
 
         download.attr("src", $(viewerImage).attr("data-src"));
