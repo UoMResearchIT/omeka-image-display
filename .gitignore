@@ -2,3 +2,5 @@
 /src/views/shared/javascripts/viewer.js
 /ImageDisplay/
 /src/views/shared/**/*.css
+
+*.css
