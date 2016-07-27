@@ -29,6 +29,8 @@ if (typeof ImageDisplay === "undefined")
         /**
          * Initialize the image display.
          * @function
+         *
+         * @fires document#viewerFinished
          */
         init: function ()
         {
@@ -36,6 +38,12 @@ if (typeof ImageDisplay === "undefined")
                 this.viewer = new ImageDisplay.Viewer;
                 this.viewer.init();
 
+                /**
+                 * Fired when the viewer has completed initialization.
+                 *
+                 * @event document#viewerFinished
+                 * @type {CustomEvent}
+                 */
                 var e = document.createEvent("CustomEvent");
                 e.initCustomEvent("viewerFinished", true, true, {});
                 document.dispatchEvent(e);
@@ -55,3 +63,9 @@ if (typeof ImageDisplay === "undefined")
             this.viewer.showImage(index);
         }
     };
+
+/**
+ * The DOM document.
+ *
+ * @namespace document
+ */
