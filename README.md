@@ -33,3 +33,7 @@ derivative size is large enough. The setting can be found in the
 "Settings" menu of the "Appearances" page.
 
 At least 1000000 pixels is recommended.
+
+## Documentation
+
+To compile the documentation, [JSDoc](http://usejsdoc.org/) is required. Simply run make documentation in the root. This will create a "documentation" directory, containing js_doc for the javascript documentation.
