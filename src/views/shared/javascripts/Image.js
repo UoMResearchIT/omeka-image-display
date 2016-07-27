@@ -134,13 +134,11 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
         var download = $("<img style=\"display:none\" />");
 
         // Make the loading image small
-        $(viewerImage).css("width", "5%");
-        $(viewerImage).css("height", "5%");
+        $(viewerImage).addClass("loading");
 
         download.load(function () {
+            $(viewerImage).removeClass("loading");
             $(viewerImage).attr("src", $(this).attr("src"));
-            $(viewerImage).css("width", "100%");
-            $(viewerImage).css("height", "100%");
         });
 
         download.attr("src", $(viewerImage).attr("data-src"));
