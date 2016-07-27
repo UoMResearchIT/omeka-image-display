@@ -152,9 +152,6 @@ ImageDisplay.Viewer = function ()
             document.getElementsByClassName("image-display-close-button");
         [].forEach.call(buttons, function (button, i) {
             button.addEventListener("click", function () {
-
-                console.log(i);
-
                 this.hide(i);
             }.bind(this));
         }.bind(this));
