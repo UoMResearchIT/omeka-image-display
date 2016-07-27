@@ -4,7 +4,7 @@ viewer.js: $(files)
 	closure --js $^ --js_output_file $@
 
 documentation: $(files)
-	jsdoc $^
+	jsdoc -R ../../../../README.md $^
 
 
 .PHONY: clean
