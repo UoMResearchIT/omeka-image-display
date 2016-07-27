@@ -51,7 +51,7 @@ ImageDisplay: css javascript
 
 	cp src/$(javascript_dir)/object-fit-images/dist/ofi.browser.js $@/$(javascript_dir)
 
-.PHONY: css javascript clean
+.PHONY: css javascript clean documentation
 
 css:
 	# Compile the CSS of each layout
@@ -66,8 +66,16 @@ javascript:
 
 clean:
 	-rm -r ImageDisplay
+	-rm -r documentation
 	# Run the clean target of each layout
 	for layout in $(layout_dirs); do \
 		$(MAKE) -C src/"$$layout" clean; \
 	done
 	$(MAKE) -C src/$(javascript_dir) clean
+
+documentation: js_doc
+
+js_doc:
+	$(MAKE) -C src/$(javascript_dir) documentation
+	mkdir -p documentation
+	cp -r src/$(javascript_dir)/out documentation/js_doc

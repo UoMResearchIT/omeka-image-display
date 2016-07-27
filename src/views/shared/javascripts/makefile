@@ -11,3 +11,4 @@ documentation: $(files)
 
 clean:
 	-rm viewer.js
+	-rm -r out
