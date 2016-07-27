@@ -36,4 +36,6 @@ At least 1000000 pixels is recommended.
 
 ## Documentation
 
-To compile the documentation, [JSDoc](http://usejsdoc.org/) is required. Simply run make documentation in the root. This will create a "documentation" directory, containing js_doc for the javascript documentation.
+Documentation is available through https://uomresearchit.github.io/omeka-image-display/
+
+To compile the documentation, [JSDoc](http://usejsdoc.org/) is required. Simply run make documentation in the root. This will create a "documentation" directory.
