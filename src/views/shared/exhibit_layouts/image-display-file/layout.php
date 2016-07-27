@@ -16,7 +16,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
 <div class="container">
     <?php
     echo $layoutHelper->getImages(
-        $attachments,
+        array(array_shift($attachments)),
         array("class" => "layout-image-display-container-image"),
         "thumbnail",
         false,
@@ -30,7 +30,7 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
         <div id="image-container" class="image-display-container">
             <?php
             $images = $layoutHelper->getImages(
-                $attachments,
+                array(array_shift($attachments)),
                 array("class" => "layout-image-display-image"),
                 "fullsize"
             );
@@ -44,19 +44,13 @@ $layoutHelper = new ImageDisplayLayoutHelper($this, $attachments);
         </button>
         <div id="description-container" class="image-display-container">
             <?php
-            $items = array_map(
-                function ($attachment) {
-                    return $attachment->getItem();
-                }, $attachments
-            );
+            $item = array_shift($attachments)->getItem();
+            $caption = array_shift($attachments)->caption;
 
-            $captions = array_map(
-                function ($attachment) {
-                    return $attachment->caption;
-                }, $attachments
+            echo $layoutHelper->getImageMetadata(
+                array($item),
+                array($caption)
             );
-
-            echo $layoutHelper->getImageMetadata($items, $captions);
             ?>
         </div>
     </div>

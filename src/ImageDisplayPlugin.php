@@ -55,7 +55,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
 
         $layouts["image-display-file"] = array(
             "name" => __("Image Display File"),
-            "description" => __("A single-file layout with better image navigation.")
+            "description" => __("A single-file layout with better image navigation. (Note: The form does support multiple items, but the plugin may behave unexpectedly when adding multiple files this way).")
         );
 
         return $layouts;
