@@ -33,7 +33,10 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     protected $options = array(
-        "image_display_public_append_to_items_show" => true
+        "image_display_public_append_to_items_show" => true,
+        "image_display_zoom_speed" => 1,
+        "image_display_zoom_max" => 6,
+        "image_display_zoom_min" => 0.1
     );
 
     /**
@@ -79,7 +82,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Add the viewer script to item pages.
      *
-     * @param mixed args The args as defined by omeka.
+     * @param mixed $args - The args as defined by omeka.
      *
      * @return null
      */
@@ -88,6 +91,18 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
         if (get_option("image_display_public_append_to_items_show")) {
             queue_js_file("viewer");
             queue_js_file("ofi.browser");
+            queue_js_string(
+                '
+                document.addEventListener("viewerFinished", function () {
+                    ImageDisplay.Image.ZOOM_SPEED = ' .
+                                        get_option("image_display_zoom_speed") .
+                ';   ImageDisplay.Image.ZOOM_MAX = ' .
+                                        get_option("image_display_zoom_max") .
+                ';   ImageDisplay.Image.ZOOM_MIN = ' .
+                                        get_option("image_display_zoom_min") .
+                ';});
+                '
+            );
             queue_css_file("image-viewer");
         }
     }
@@ -117,6 +132,21 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
         set_option(
             "image_display_public_append_to_items_show",
             (boolean) $settings["post"]["image_display_public_append_to_items_show"]
+        );
+
+        set_option(
+            "image_display_zoom_speed",
+            (float) $settings["post"]["image_display_zoom_speed"]
+        );
+
+        set_option(
+            "image_display_zoom_max",
+            (float) $settings["post"]["image_display_zoom_max"]
+        );
+
+        set_option(
+            "image_display_zoom_min",
+            (float) $settings["post"]["image_display_zoom_min"]
         );
     }
 

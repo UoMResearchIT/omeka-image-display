@@ -35,6 +35,10 @@ if (typeof ImageDisplay === "undefined")
             if (!this.viewer) {
                 this.viewer = new ImageDisplay.Viewer;
                 this.viewer.init();
+
+                var e = document.createEvent("CustomEvent");
+                e.initCustomEvent("viewerFinished", true, true, {});
+                document.dispatchEvent(e);
             }
         },
 

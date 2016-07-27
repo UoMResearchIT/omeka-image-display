@@ -347,6 +347,9 @@ ImageDisplay.Image = function (galleryImage, viewerImage, metadata)
     };
 };
 
+// These are only default values; Actual settings should be modified
+// using the plugin settings page.
+
 /**
  * The speed with which scrolling zooms the image.
  */
@@ -360,4 +363,4 @@ ImageDisplay.Image.ZOOM_MIN = 0.1;
 /**
  * The maximum zoom level.
  */
-ImageDisplay.Image.ZOOM_MAX = 6;
+ImageDisplay.Image.ZOOM_MAX = 15;
