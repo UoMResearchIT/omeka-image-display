@@ -73,9 +73,13 @@ clean:
 	done
 	$(MAKE) -C src/$(javascript_dir) clean
 
-documentation: js_doc
+documentation: js_doc php_doc
 
 js_doc:
 	$(MAKE) -C src/$(javascript_dir) documentation
 	mkdir -p documentation
 	cp -r src/$(javascript_dir)/out documentation/js_doc
+
+php_doc:
+	mkdir -p documentation
+	phpdoc -d src -t documentation/php_doc
