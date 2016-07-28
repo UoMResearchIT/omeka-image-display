@@ -3,6 +3,41 @@
 A simple plugin for [Omeka](https://omeka.org/) that adds improved
 image display layouts to exhibits.
 
+## Features
+The plugin adds an overlay for images that allows
+zooming by scrolling and panning by dragging accross
+the screen. This is useful for large images, since
+with omeka's defaults these are only show as an inline
+image.
+
+Configuration allows
+* Enabling the plugin on item pages
+* Setting the zoom speed
+* Setting the maximum zoom level
+* Setting the minimum zoom level
+
+The first feature is useful if the view is only
+required on exhibit pages, since the exhibit support
+is done through individual layouts. This can improve
+page loading times on image pages.
+
+The zoom speed is a factor by which each scroll tick
+zooms the image. If the default feels odd, you can
+modify this value to your liking.
+
+The zoom levels restrict the zoom depths. This is
+useful, since accidental scrolling or just user error
+may result in strange zooms - this way, we restrict
+the user to reasonable levels.
+
+Some projects may require larger zooms, some might not
+need as much or only want a larger image display - for
+such projects these settings exist.
+
+They can also help with performance issues, since
+zooming in can affect system performance.
+
+
 ## Compilation
 
 To compile the project, [Stylus](http://stylus-lang.com/) and

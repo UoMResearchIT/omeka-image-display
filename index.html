@@ -4,7 +4,7 @@
     <title>ImageDisplay documentation</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
@@ -15,9 +15,59 @@
                 <h1>ImageDisplay documentation</h1>
 
                 This is the documentation page for
-                <a href="https://github.com/UoMResearchIT/omeka-image-display/tree/gh-pages">Omeka ImageDisplay</a>,
-                a plugin that adds an improved image viewing display
-                to items and exhibit layouts.
+                <a href="https://github.com/UoMResearchIT/omeka-image-display/tree/gh-pages">Omeka ImageDisplay</a>.
+
+                <h2>Features</h2>
+
+                <p>
+                    The plugin adds an overlay for images that allows
+                    zooming by scrolling and panning by dragging accross
+                    the screen. This is useful for large images, since
+                    with omeka's defaults these are only show as an inline
+                    image.
+                </p>
+
+                <p>
+                    Configuration allows
+
+                    <ul>
+                        <li>Enabling the plugin on item pages</li>
+                        <li>Setting the zoom speed</li>
+                        <li>Setting the maximum zoom level</li>
+                        <li>Setting the minimum zoom level</li>
+                    </ul>
+                </p>
+
+                <p>
+                    The first feature is useful if the view is only
+                    required on exhibit pages, since the exhibit support
+                    is done through individual layouts. This can improve
+                    page loading times on image pages.
+                </p>
+
+                <p>
+                    The zoom speed is a factor by which each scroll tick
+                    zooms the image. If the default feels odd, you can
+                    modify this value to your liking.
+                </p>
+
+                <p>
+                    The zoom levels restrict the zoom depths. This is
+                    useful, since accidental scrolling or just user error
+                    may result in strange zooms - this way, we restrict
+                    the user to reasonable levels.
+                </p>
+
+                <p>
+                    Some projects may require larger zooms, some might not
+                    need as much or only want a larger image display - for
+                    these these settings exist.
+                </p>
+
+                <p>
+                    They can also help with performance issues, since
+                    zooming in can affect system performance.
+                </p>
 
                 <h2>Code documentation</h2>
 
