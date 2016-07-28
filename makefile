@@ -78,6 +78,7 @@ documentation: js_doc php_doc
 js_doc:
 	$(MAKE) -C src/$(javascript_dir) documentation
 	mkdir -p documentation
+	-rm -r documentation/js_doc
 	cp -r src/$(javascript_dir)/out documentation/js_doc
 
 php_doc:
