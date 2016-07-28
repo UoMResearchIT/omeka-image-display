@@ -19,6 +19,11 @@
  */
 class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
 {
+    /**
+     * The hooks used by this plugin.
+     *
+     * @var string[]
+     */
     protected $_hooks = array(
         "config",
         "config_form",
@@ -28,10 +33,20 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
         "exhibit_builder_page_head"
     );
 
+    /**
+     * The filters applied by this plugin.
+     *
+     * @var string[]
+     */
     protected $_filters = array(
         "exhibit_layouts"
     );
 
+    /**
+     * The options provided by this plugin.
+     *
+     * @var string[]
+     */
     protected $options = array(
         "image_display_public_append_to_items_show" => true,
         "image_display_zoom_speed" => 1,
@@ -42,9 +57,9 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the exhibition layout.
      *
-     * @param mixed $layouts The layouts as defined by omeka.
+     * @param mixed[] $layouts The layouts as defined by omeka.
      *
-     * @return null
+     * @return mixed[] The layouts including our own deinitions.
      */
     public function filterExhibitLayouts($layouts)
     {
@@ -64,7 +79,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Add the viewer script to exhibit pages.
      *
-     * @param mixed $args - The args as defined by omeka.
+     * @param mixed[] $args - The args as defined by omeka.
      *
      * @return null
      */
@@ -82,7 +97,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Add the viewer script to item pages.
      *
-     * @param mixed $args - The args as defined by omeka.
+     * @param mixed[] $args - The args as defined by omeka.
      *
      * @return null
      */
@@ -123,7 +138,7 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Respond to the configuration form.
      *
-     * @param mixed $settings The settings as set by the configuration form.
+     * @param mixed[] $settings The settings as set by the configuration form.
      *
      * @return null
      */

@@ -35,6 +35,8 @@ class ImageDisplayLayoutHelper
      *                                               link to its corresponding
      *                                               item page. corresponding
      *                                               item page.
+     * @param boolean                   $alt         Whether to insert the item
+     *                                               title as an alt text.
      *
      * @return string An HTML string as described.
      */
