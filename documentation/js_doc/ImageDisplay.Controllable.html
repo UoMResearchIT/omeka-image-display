@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Image</title>
+    <title>JSDoc: Class: Controllable</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Image</h1>
+    <h1 class="page-title">Class: Controllable</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="ImageDisplay.html">ImageDisplay</a>.</span>Image</h2>
+            <span class="ancestors"><a href="ImageDisplay.html">ImageDisplay</a>.</span>Controllable</h2>
         
     
 </header>
@@ -41,14 +41,14 @@
 
     
 
-    <h4 class="name" id="Image"><span class="type-signature"></span>new Image<span class="signature">(galleryImage, viewerImage)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Controllable"><span class="type-signature"></span>new Controllable<span class="signature">(object, zoomSpeed, zoomMax, zoomMin)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    An image to be displayed by the image viewer interface.
+    A controllable DOM element.
 </div>
 
 
@@ -84,7 +84,7 @@
 
         <tr>
             
-                <td class="name"><code>galleryImage</code></td>
+                <td class="name"><code>object</code></td>
             
 
             <td class="type">
@@ -100,21 +100,20 @@
 
             
 
-            <td class="description last">The image displayed on the page that should display the
-viewerImage when clicked.</td>
+            <td class="description last">The DOM element to be made controllable.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>viewerImage</code></td>
+                <td class="name"><code>zoomSpeed</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">HTMLElement</span>
+<span class="param-type">Number</span>
 
 
             
@@ -124,7 +123,53 @@ viewerImage when clicked.</td>
 
             
 
-            <td class="description last">The image to be displayed inside the viewer.</td>
+            <td class="description last">The speed with which the image should zoom.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>zoomMax</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The maximum zoom level.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>zoomMin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The minimum zoom level.</td>
         </tr>
 
     
@@ -165,7 +210,7 @@ viewerImage when clicked.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line37">line 37</a>
+        <a href="Controllable.js.html">Controllable.js</a>, <a href="Controllable.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -205,281 +250,9 @@ viewerImage when clicked.</td>
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".ZOOM_MAX"><span class="type-signature">(static) </span>ZOOM_MAX<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    The maximum zoom level.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line185">line 185</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".ZOOM_MIN"><span class="type-signature">(static) </span>ZOOM_MIN<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    The minimum zoom level.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line180">line 180</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".ZOOM_SPEED"><span class="type-signature">(static) </span>ZOOM_SPEED<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    The speed with which scrolling zooms the image.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line175">line 175</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="hide"><span class="type-signature"></span>hide<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Hide the viewerImage.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line160">line 160</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
             
@@ -493,8 +266,7 @@ viewerImage when clicked.</td>
 
 
 <div class="description">
-    Initialize the object. Adds a click event listener to the
-galleryImage.
+    Initialize the object as a controllable.
 </div>
 
 
@@ -538,7 +310,7 @@ galleryImage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line118">line 118</a>
+        <a href="Controllable.js.html">Controllable.js</a>, <a href="Controllable.js.html#line244">line 244</a>
     </li></ul></dd>
     
 
@@ -569,14 +341,14 @@ galleryImage.
 
     
 
-    <h4 class="name" id="show"><span class="type-signature"></span>show<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Show the viewerImage.
+    Reset the pan and zoom.
 </div>
 
 
@@ -620,7 +392,171 @@ galleryImage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Image.js.html">Image.js</a>, <a href="Image.js.html#line146">line 146</a>
+        <a href="Controllable.js.html">Controllable.js</a>, <a href="Controllable.js.html#line228">line 228</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="startAnimation"><span class="type-signature"></span>startAnimation<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Start the controllable animations.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Controllable.js.html">Controllable.js</a>, <a href="Controllable.js.html#line262">line 262</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="stopAnimation"><span class="type-signature"></span>stopAnimation<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Stop the controllable animations.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Controllable.js.html">Controllable.js</a>, <a href="Controllable.js.html#line270">line 270</a>
     </li></ul></dd>
     
 
