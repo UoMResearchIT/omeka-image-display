@@ -77,35 +77,15 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     /**
-     * Add the viewer script to exhibit pages.
-     *
-     * @param mixed[] $args - The args as defined by omeka.
+     * Add all required files to the page head.
      *
      * @return null
      */
-    public function hookExhibitBuilderPageHead($args)
+    private function _queueFiles()
     {
-        if (array_key_exists("image-display-gallery", $args["layouts"])
-            || array_key_exists("image-display-file", $args["layouts"])
-        ) {
             queue_js_file("viewer");
             queue_js_file("ofi.browser");
-            queue_css_file("image-viewer");
-        }
-    }
-
-    /**
-     * Add the viewer script to item pages.
-     *
-     * @param mixed[] $args - The args as defined by omeka.
-     *
-     * @return null
-     */
-    public function hookPublicHead($args)
-    {
-        if (get_option("image_display_public_append_to_items_show")) {
-            queue_js_file("viewer");
-            queue_js_file("ofi.browser");
+            queue_js_file("rAF");
             queue_js_string(
                 '
                 document.addEventListener("viewerFinished", function () {
@@ -119,6 +99,35 @@ class ImageDisplayPlugin extends Omeka_Plugin_AbstractPlugin
                 '
             );
             queue_css_file("image-viewer");
+    }
+
+    /**
+     * Add the viewer script to exhibit pages.
+     *
+     * @param mixed[] $args - The args as defined by omeka.
+     *
+     * @return null
+     */
+    public function hookExhibitBuilderPageHead($args)
+    {
+        if (array_key_exists("image-display-gallery", $args["layouts"])
+            || array_key_exists("image-display-file", $args["layouts"])
+        ) {
+            $this->_queueFiles();
+        }
+    }
+
+    /**
+     * Add the viewer script to item pages.
+     *
+     * @param mixed[] $args - The args as defined by omeka.
+     *
+     * @return null
+     */
+    public function hookPublicHead($args)
+    {
+        if (get_option("image_display_public_append_to_items_show")) {
+            $this->_queueFiles();
         }
     }
 
