@@ -1,3 +1,6 @@
 [submodule "src/views/shared/javascripts/object-fit-images"]
 	path = src/views/shared/javascripts/object-fit-images
 	url = https://github.com/bfred-it/object-fit-images.git
+[submodule "src/views/shared/javascripts/1579671"]
+	path = src/views/shared/javascripts/1579671
+	url = git@gist.github.com:1579671.git

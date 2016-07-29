@@ -49,7 +49,9 @@ ImageDisplay: css javascript
 	cp $(addprefix src/$(css_dir)/,$(css_files)) $@/$(css_dir)
 	cp $(addprefix src/,$(src_files)) $@
 
-	cp src/$(javascript_dir)/object-fit-images/dist/ofi.browser.js $@/$(javascript_dir)
+	cp src/$(javascript_dir)/1579671/rAF.js\
+           src/$(javascript_dir)/object-fit-images/dist/ofi.browser.js\
+           $@/$(javascript_dir)
 
 .PHONY: css javascript clean documentation
 

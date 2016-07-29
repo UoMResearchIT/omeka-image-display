@@ -25,6 +25,7 @@
 /**
  * Manages the image viewer interface.
  * @class
+ * @constructor
  */
 ImageDisplay.Viewer = function ()
 {
