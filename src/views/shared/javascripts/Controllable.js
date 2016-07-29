@@ -265,7 +265,7 @@ ImageDisplay.Controllable = function (object, zoomSpeed, zoomMax, zoomMin)
     };
 
     /**
-     * Stop the controllabel animations.
+     * Stop the controllable animations.
      */
     this.stopAnimation = function ()
     {
